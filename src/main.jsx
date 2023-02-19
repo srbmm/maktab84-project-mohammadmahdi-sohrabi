@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
+import {Auth, Card, FakePayment, MainPage, PaymentStatus, Product, Products} from "@/components";
 import './index.css'
 import {
     createBrowserRouter,
@@ -9,32 +9,31 @@ import {
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <h1>Main</h1>,
-    },
+        element: <MainPage />  },
     {
         path: "/auth",
-        element: <h1>Auth</h1>,
+        element: <Auth />,
     },
     {
         path: "/card",
-        element: <h1>Card</h1>,
+        element: <Card />,
     },
     {
         path: "/fake-payment",
-        element: <h1>Payment</h1>,
+        element: <FakePayment />,
     },
 
     {
         path: "/payment-statue",
-        element: <h1>PaymentStatus</h1>,
+        element: <PaymentStatus />,
     },
     {
         path: "/product",
-        element: <h1>Product</h1>,
+        element: <Product />,
     },
     {
         path: "/products",
-        element: <h1>Products</h1>,
+        element: <Products />,
     }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(

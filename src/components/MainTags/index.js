@@ -1,3 +1,3 @@
-export * from "./Button"
+export * from "./Buttons"
 export * from "./Input"
-export * from "./FlexBox"
+export * from "./Links"
