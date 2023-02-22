@@ -1,11 +1,11 @@
-import {Footer, Header} from "@/components";
+import {Footer, Header, Slider} from "@/components";
 
 export const MainPage = () => {
     return (
         <>
             <Header/>
             <div>
-                Hi this is a test.
+                <Slider />
             </div>
             <Footer/>
         </>

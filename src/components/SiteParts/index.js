@@ -1,4 +1,5 @@
-export * from "./Header.jsx"
-export * from "./Footer.jsx"
+export * from "./Header"
+export * from "./Footer"
+export * from "./Slider"
 export * from "./MainTheme.jsx"
 export * from "./SideBarFilter.jsx"
