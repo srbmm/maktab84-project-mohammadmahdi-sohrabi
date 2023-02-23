@@ -5,7 +5,7 @@ import "./Header.css"
 
 export const Header = () => {
     return (
-        <div className="bg-img">
+        <div className="w-full dir-rtl">
             <div className="flex justify-around p-5">
                 <div className="w-56 flex gap-3 h-5 items-center"><div><Basket /></div> <div><Profile /></div></div>
                 <div className="flex flex-col items-center">

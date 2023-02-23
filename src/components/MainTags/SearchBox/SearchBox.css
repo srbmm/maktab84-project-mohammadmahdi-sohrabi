@@ -1,0 +1,6 @@
+.text-search{
+    color: #2a2727;
+}
+.text-search::placeholder{
+    color: #2a2727 !important;
+}
