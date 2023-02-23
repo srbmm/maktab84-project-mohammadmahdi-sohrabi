@@ -1,4 +1,4 @@
-export * from "./Auth.jsx"
+export * from "./Auth"
 export * from "./Card.jsx"
 export * from "./FakePayment.jsx"
 export * from "./MainPage.jsx"

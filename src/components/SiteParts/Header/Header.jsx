@@ -1,7 +1,8 @@
 import {Basket, TPLink, Profile} from "@/components/index.js";
-import logo from "../../../assets/picture/logo.svg"
+import logo from "@/assets/picture/logo.svg"
 import {SearchBox} from "@/components/MainTags/SearchBox/index.js";
 import "./Header.css"
+import {Link} from "react-router-dom";
 
 export const Header = () => {
     return (
@@ -9,7 +10,7 @@ export const Header = () => {
             <div className="flex justify-around p-5">
                 <div className="w-56 flex gap-3 h-5 items-center"><div><Basket /></div> <div><Profile /></div></div>
                 <div className="flex flex-col items-center">
-                    <div className="bg-gray-400 p-2 rounded"><img src={logo}/></div>
+                    <Link to="/" className="bg-gray-400 p-2 rounded"><img src={logo}/></Link>
                     <div className="border-b border-black w-80 m-6"></div>
                     <div className="flex gap-7 c">
                         <TPLink to="auth"/>

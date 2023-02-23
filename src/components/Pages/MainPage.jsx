@@ -11,10 +11,12 @@ export const MainPage = () => {
             <Slider data={SlidesData}>
                 <Header/>
             </Slider>
-            <div>
+            <div className="m-5">
                 body
             </div>
-            <Footer/>
+            <div className="m-5 pr-56 pl-56">
+                <Footer/>
+            </div>
         </>
     )
 }
