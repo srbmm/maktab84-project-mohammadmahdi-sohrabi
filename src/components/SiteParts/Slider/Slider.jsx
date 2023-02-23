@@ -14,15 +14,17 @@ export function Slider({children, data}) {
     };
     const slides = data.map((item) => {
         return (
-            <div className="relative slide">
-                <div className="absolute w-full">{children}</div>
+            <div className="slide">
                 <img src={item.img} className="object-cover"/>
             </div>
         )
     })
     return (
-        <Slides {...settings}>
+        <div className="relative">
+        <div className="absolute w-full z-10">{children}</div>
+    <Slides {...settings}>
             {...slides}
         </Slides>
+        </div>
     );
 }

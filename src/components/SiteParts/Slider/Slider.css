@@ -1,6 +1,3 @@
-.slide{
-    cursor: grab;
-}
 .slide:active{
     cursor: grabbing;
 }
