@@ -1,6 +1,17 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import {Auth, Card, FakePayment, MainPage, PaymentStatus, Product, Products} from "@/components";
+import {
+    Admin,
+    AdminHistory,
+    AdminProducts,
+    Auth,
+    Card,
+    FakePayment,
+    MainPage,
+    PaymentStatus,
+    Product,
+    Products
+} from "@/components";
 import './index.css'
 import {
     createBrowserRouter,
@@ -28,12 +39,24 @@ const router = createBrowserRouter([
         element: <PaymentStatus />,
     },
     {
-        path: "/product",
-        element: <Product />,
-    },
-    {
         path: "/products",
         element: <Products />,
+    },
+    {
+        path: "/admin",
+        element: <Admin />,
+    },
+    {
+        path: "/admin/products",
+        element: <AdminProducts />,
+    },
+    {
+        path: "/admin/history",
+        element: <AdminHistory />,
+    },
+    {
+        path: "/products/:id",
+        element: <Product />
     }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(

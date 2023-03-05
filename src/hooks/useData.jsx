@@ -1,9 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import axios from "axios";
-function UseData(address) {
+export function useData(address, id = "") {
     const [data, setData] = useState([])
+    const [isFind, setIsFind] = useState(true)
     useEffect(() => {
-        axios.get(address).then(response => setData(response.data))
+        axios.get(`${address}/${id}`).then(response => setData(response.data)).catch(()=> setIsFind(false))
     },[])
     function add(obj){
         axios.post(address, obj).then(response => {
@@ -28,7 +29,5 @@ function UseData(address) {
             return true
         }).catch(response => false)
     }
-    return [data, add, edit, remove]
+    return [data, add, edit, remove, isFind]
 }
-
-export default UseData;

@@ -7,7 +7,7 @@ export const SignUp = ({setIsSignUp}) => {
             <input className="p-2 border-gray-500 border-b" placeholder="نام کاربری"/>
             <input className="p-2 border-gray-500 border-b" placeholder="رمز"/>
             <input className="p-2 border-gray-500 border-b" placeholder="تکرار رمز"/>
-            <BlueBtn>ثبت نام</BlueBtn>
+            <BlueBtn className="w-full">ثبت نام</BlueBtn>
             <button className="text-center" onClick={() => setIsSignUp(false)}>ورود</button>
         </form>
     )
