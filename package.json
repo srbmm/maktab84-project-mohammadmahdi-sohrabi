@@ -31,7 +31,6 @@
     "react-toastify": "^9.1.1",
     "slick-carousel": "^1.8.1",
     "sort-by": "^0.0.2",
-    "use-react-router-breadcrumbs": "^4.0.1",
     "vite-jsconfig-paths": "^2.0.1"
   },
   "devDependencies": {

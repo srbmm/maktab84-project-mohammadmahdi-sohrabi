@@ -11,6 +11,9 @@ export function Slider({children, data}) {
         slidesToShow: 1,
         slidesToScroll: 1,
         arrows: false,
+        fade: true,
+        autoplay: true,
+        autoplaySpeed: 3000
     };
     const slides = data.map((item) => {
         return (

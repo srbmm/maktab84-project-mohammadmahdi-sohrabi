@@ -12,12 +12,13 @@ import {
     Product,
     Products
 } from "@/components";
-import {URL} from "@/Constant"
 import './index.css'
 import {
     createBrowserRouter,
-    RouterProvider, useMatch,
+    RouterProvider
 } from "react-router-dom";
+import {URL} from "@/Constant"
+
 const router = createBrowserRouter([
     {
         path: URL.home.url,
