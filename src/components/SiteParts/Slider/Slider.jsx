@@ -24,10 +24,12 @@ export function Slider({children, data}) {
     })
     return (
         <div className="relative">
-        <div className="absolute w-full z-10">{children}</div>
-    <Slides {...settings}>
-            {...slides}
-        </Slides>
+            <div className="md:absolute w-full z-10">{children}</div>
+            <div className="hidden md:block">
+                <Slides {...settings}>
+                    {...slides}
+                </Slides>
+            </div>
         </div>
     );
 }

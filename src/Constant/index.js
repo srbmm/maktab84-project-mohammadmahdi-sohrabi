@@ -39,7 +39,7 @@ export const URL = {
         persian: "تاریخچه"
     },
     product:{
-        url: "/products/:id",
+        url: "/products/:category/:id",
         persian: "محصول"
     }
 }

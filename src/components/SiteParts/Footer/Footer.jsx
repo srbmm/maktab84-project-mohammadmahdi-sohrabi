@@ -37,7 +37,7 @@ const footer3 = {
 
 export const Footer = () => {
     return (
-        <div>
+        <div className="m-5 md:pr-56 md:pl-56">
             <div>
                 <div className="flex justify-between">
                     <FooterMenu data={footer1}/>
@@ -55,7 +55,7 @@ export const Footer = () => {
                 <div className="mt-4 mt-4 pb-4 border-slate-300 border-b">
                     <Link to="#">دانلود اپلیکیشن دیجی استایل</Link>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex flex-col lg:flex-row gap-4">
                     <div>
                         <h4>فروشگاه اینترنتی مد و لباس دیجی‌استایل</h4>
                         <p className="text-gray-500">دیجی‌استایل، پس از تجربه‌ی موفق فروشگاه اینترنتی دیجی‌کالا به صورت
@@ -66,7 +66,7 @@ export const Footer = () => {
                             کامل
                             از جدیدترین‌ برندهای معتبر را بخرید.</p>
                     </div>
-                    <div className="flex gap-4 m-4">
+                    <div className="flex justify-center gap-4 m-4">
                         <Link to="#" className="border-gray-300 border p-4 w-28"><img src={samandehi} className="object-cover"/></Link>
                         <Link to="#" className="border-gray-300 border p-4 w-28"><img src={kasbokar} className="object-cover"/></Link>
                         <Link to="#" className="border-gray-300 border p-4 w-28"><img src={enamad} className="object-cover"/></Link>

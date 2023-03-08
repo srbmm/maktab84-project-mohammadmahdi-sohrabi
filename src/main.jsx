@@ -14,7 +14,7 @@ import {
 } from "@/components";
 import './index.css'
 import {
-    createBrowserRouter,
+    createBrowserRouter, Navigate,
     RouterProvider
 } from "react-router-dom";
 import {URL} from "@/Constant"
@@ -59,6 +59,10 @@ const router = createBrowserRouter([
     {
         path: URL.product.url,
         element: <Product />
+    },
+    {
+        path: "*",
+        element: <Navigate to="/"/>
     }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
