@@ -1,8 +1,9 @@
 import {BlueBtn, HeaderAdmin, MainTheme, ProductAdminTag, SearchBox} from "@/components";
 import { useData } from "@/hooks"
 import {useState} from "react";
+import {PrADDRESS} from "@/Constant/index.js";
 export const AdminProducts = () => {
-    const [data, add, edit, remove] = useData(`http://localhost:3000/products`);
+    const [data, add, edit, remove] = useData(PrADDRESS);
     const [search, setSearch] = useState("")
     const filteredData = search ? data.filter(product => product.name.includes(search)) : data
     const products = filteredData.map(product => <ProductAdminTag name={product.name} category={product.category} price={product.price} number={product.number} picture={product.picture} />)

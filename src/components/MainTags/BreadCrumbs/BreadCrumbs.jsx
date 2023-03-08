@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import BreadCrumb from "use-react-router-breadcrumbs";
-import ADDRESS from "@/ADDRESS.js";
+import {PrADDRESS} from "@/Constant";
 import {useEffect, useState} from "react";
 import axios from "axios";
 
@@ -13,7 +13,7 @@ export const BreadCrumbs = () => {
     if (beforeLast === "Products"){
         isProductName = true;
     useEffect(()=>{
-        axios.get(ADDRESS+"/products/"+last).then(response => setName(response.data.name))
+        axios.get(PrADDRESS+"/"+last).then(response => setName(response.data.name))
 
     }, [])
     }

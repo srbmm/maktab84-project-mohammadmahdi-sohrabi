@@ -1,12 +1,12 @@
 import {Navigate, useParams} from "react-router-dom";
 import {useData} from "@/hooks/index.js";
-import ADDRESS from "@/ADDRESS.js";
+import {PrADDRESS} from "@/Constant";
 import {MainTheme} from "@/components"
 import './Product.css';
 
 export const Product = () => {
     const {id} = useParams()
-    const [product, add, edit, remove, isFind] = useData(`${ADDRESS}/products/${id}`)
+    const [product, add, edit, remove, isFind] = useData(`${PrADDRESS}/${id}`)
     if (isFind) {
         const src = `../src/assets/picture/products/${product.picture}`
         return(

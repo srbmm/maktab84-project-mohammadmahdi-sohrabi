@@ -12,50 +12,51 @@ import {
     Product,
     Products
 } from "@/components";
+import {URL} from "@/Constant"
 import './index.css'
 import {
     createBrowserRouter,
-    RouterProvider,
+    RouterProvider, useMatch,
 } from "react-router-dom";
 const router = createBrowserRouter([
     {
-        path: "/",
+        path: URL.home.url,
         element: <MainPage />  },
     {
-        path: "/auth",
+        path: URL.auth.url,
         element: <Auth />,
     },
     {
-        path: "/card",
+        path: URL.card.url,
         element: <Card />,
     },
     {
-        path: "/fake-payment",
+        path: URL.fakePayment.url,
         element: <FakePayment />,
     },
 
     {
-        path: "/payment-statue",
+        path: URL.paymentStatus.url,
         element: <PaymentStatus />,
     },
     {
-        path: "/products",
+        path: URL.products.url,
         element: <Products />,
     },
     {
-        path: "/admin",
+        path: URL.admin.url,
         element: <Admin />,
     },
     {
-        path: "/admin/products",
+        path: URL.adminProducts.url,
         element: <AdminProducts />,
     },
     {
-        path: "/admin/history",
+        path: URL.adminHistory.url,
         element: <AdminHistory />,
     },
     {
-        path: "/products/:id",
+        path: URL.product.url,
         element: <Product />
     }
 ])
