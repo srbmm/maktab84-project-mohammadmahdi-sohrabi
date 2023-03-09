@@ -24,8 +24,8 @@ export function Slider({children, data}) {
     })
     return (
         <div className="relative">
-            <div className="md:absolute w-full z-10">{children}</div>
-            <div className="hidden md:block">
+            <div className="absolute w-full z-10">{children}</div>
+            <div className="md">
                 <Slides {...settings}>
                     {...slides}
                 </Slides>
