@@ -1,0 +1,12 @@
+/* Blur-zoom Container */
+.img-hover-zoom--blur img {
+    transition: transform 0.5s, filter 1s ease-in-out;
+    filter: blur(1px);
+    transform: scale(1);
+}
+
+/* The Transformation */
+.img-hover-zoom--blur:hover img {
+    filter: blur(0);
+    transform: scale(0.95);
+}
