@@ -2,9 +2,8 @@ import {Navigate, useParams} from "react-router-dom";
 import {useData} from "@/hooks/index.js";
 import {PrADDRESS, ADDRESS} from "@/Constant";
 import {MainTheme, RedBtn} from "@/components"
-import './Product.css';
 
-export const Product = () => {
+export const ProductCategory = () => {
     const {id, category} = useParams()
     const [product, add, edit, remove, isFind] = useData(`${PrADDRESS}/${id}`)
     console.log(product)

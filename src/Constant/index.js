@@ -1,6 +1,32 @@
 export const ADDRESS = "http://localhost:3002"
 export const PrADDRESS = ADDRESS + "/products"
 export const CardADDRESS = ADDRESS + "/finishedCards"
+export const Category = [
+    {
+        name: "tshirt",
+        persian: "تی شرت"
+    },
+    {
+        name: "eynak",
+        persian: "عینک"
+    },
+    {
+        name: "saat",
+        persian: "ساعت"
+    },
+    {
+        name: "kafsh",
+        persian: "کفش"
+    },
+    {
+        name: "pirahan",
+        persian: "پیراهن"
+    },
+    {
+        name: "kif",
+        persian: "کیف"
+    }
+]
 export const URL = {
     home: {
         url: "/",
@@ -40,6 +66,18 @@ export const URL = {
     },
     product:{
         url: "/products/:category/:id",
+        persian: "محصول"
+    },
+    productsCategory:{
+        url: "/products/:category",
+        persian: "محصول"
+    },
+    productsPageCategory:{
+        url: "/products/:category/page/:page",
+        persian: "محصول"
+    },
+    productsPage:{
+        url: "/products/:category/page/:page",
         persian: "محصول"
     }
 }

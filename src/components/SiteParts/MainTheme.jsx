@@ -5,7 +5,6 @@ export const MainTheme = ({children, className}) => {
     return (
         <>
             <Header/>
-            <BreadCrumbs/>
             <div className={className}>
                 {children}
             </div>

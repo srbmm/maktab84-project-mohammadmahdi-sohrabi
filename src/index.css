@@ -30,3 +30,6 @@ body{
 .h-costume-120{
     height: 34rem;
 }
+.ltr{
+    direction: ltr;
+}

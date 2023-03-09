@@ -3,6 +3,7 @@ import logo from "@/assets/picture/logo.svg"
 import {SearchBox} from "@/components/MainTags/SearchBox/index.js";
 import "./Header.css"
 import {Link} from "react-router-dom";
+import {URL} from "@/constant"
 import {Navbar} from "flowbite-react/lib/esm/components/Navbar";
 export const Header = () => {
     return (
@@ -17,13 +18,14 @@ export const Header = () => {
                         <Link to="/" className="bg-gray-400 p-2 rounded"><img src={logo}/></Link>
                         <div className="border-b border-black w-80 m-6"></div>
                         <div className="flex gap-7 c">
-                            <TPLink to="auth">صفحه اصلی</TPLink>
-                            <TPLink to="auth">test</TPLink>
-                            <TPLink to="auth">test</TPLink>
+                            <TPLink to={`${URL.products.url}`}>همه محصولات</TPLink>
+                            <TPLink to={`${URL.products.url}/tshirt/page/1`}>تی شرت</TPLink>
+                            <TPLink to={`${URL.products.url}/eynak/page/1`}>عینک</TPLink>
                             <label className="font-300">|</label>
-                            <TPLink to="auth">test</TPLink>
-                            <TPLink to="auth">test</TPLink>
-                            <TPLink to="auth">test</TPLink>
+                            <TPLink to={`${URL.products.url}/saat/page/1`}>ساعت</TPLink>
+                            <TPLink to={`${URL.products.url}/kafsh/page/1`}>کفش</TPLink>
+                            <TPLink to={`${URL.products.url}/pirahan/page/1`}>پیراهن</TPLink>
+                            <TPLink to={`${URL.products.url}/kif/page/1`}>کیف</TPLink>
                         </div>
                     </div>
                     <div className="w-56"><SearchBox/></div>
