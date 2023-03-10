@@ -1,7 +1,8 @@
 import {BlueBtn, RedBtn} from "@/components";
 import {ADDRESS} from "@/Constant";
 
-export const ProductAdminTag = ({name, category, price, number, picture}) => {
+export const ProductAdminTag = ({name, category, price, number, picture, onClickEdit,onClickRemove}) => {
+
     picture = `${ADDRESS}/files/${picture}`
     return (
         <div className="w-full flex gap-6 items-center h-48 justify-between">
@@ -10,8 +11,8 @@ export const ProductAdminTag = ({name, category, price, number, picture}) => {
             <h3>{price}</h3>
             <h3>{number}</h3>
             <img src={picture} className="h-48"/>
-            <BlueBtn className="w-24">ویرایش</BlueBtn>
-            <RedBtn className="w-24">حذف</RedBtn>
+            <BlueBtn className="w-24" onClick={onClickEdit}>ویرایش</BlueBtn>
+            <RedBtn className="w-24" onClick={onClickRemove}>حذف</RedBtn>
         </div>
     )
 }
