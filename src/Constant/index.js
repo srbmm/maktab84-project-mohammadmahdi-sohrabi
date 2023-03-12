@@ -57,11 +57,11 @@ export const URL = {
         persian: "مدیریت"
     },
     adminProducts:{
-        url: "admin/products",
+        url: "/admin/products",
         persian: "مدیریت محصولات"
     },
     adminHistory:{
-        url: "admin/history",
+        url: "/admin/history",
         persian: "تاریخچه"
     },
     product:{

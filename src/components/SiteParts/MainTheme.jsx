@@ -6,6 +6,7 @@ export const MainTheme = ({children, className}) => {
         <>
             <ModalForm />
             <Header/>
+            <BreadCrumbs />
             <div className={className}>
                 {children}
             </div>

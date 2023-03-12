@@ -7,7 +7,6 @@ import './Product.css';
 export const Product = () => {
     const {id, category} = useParams()
     const [product, add, edit, remove, isFind] = useData(`${PrADDRESS}/${id}`)
-    console.log(product)
     if (isFind) {
         if (product.length === 0 || product?.category === category) {
             const src = `${ADDRESS}/files/${product.picture}`

@@ -1,7 +1,7 @@
 import {Footer, Header, OutOfFrame, Slider, MainPageTab} from "@/components";
 import img1 from "@/assets/picture/slides/img_1.png"
 import img2 from "@/assets/picture/slides/img_2.png"
-import {Link} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import kifLink from "@/assets/picture/directLinkImg/kif.jpg"
 import eynakLink from "@/assets/picture/directLinkImg/eynak.png"
 const products = [

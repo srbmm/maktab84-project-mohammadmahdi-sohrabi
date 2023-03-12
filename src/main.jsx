@@ -7,7 +7,7 @@ import {
     Auth,
     Card,
     FakePayment,
-    MainPage,
+    MainPage, NavigateToCategoryPage,
     PaymentStatus,
     Product,
     Products
@@ -67,10 +67,7 @@ const router = createBrowserRouter([
     },
     {
         path: URL.productsCategory.url,
-        element: () => {
-            const {category} = useParams()
-            return <Navigate to={`${URL.products.url}/${category}/page/1`} />
-        }
+        element: <NavigateToCategoryPage />
     },
     {
         path: URL.productsPage.url,

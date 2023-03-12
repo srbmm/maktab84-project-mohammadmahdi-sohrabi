@@ -3,7 +3,7 @@ import logo from "@/assets/picture/logo.svg"
 import {SearchBox} from "@/components/MainTags/SearchBox/index.js";
 import "./Header.css"
 import {Link} from "react-router-dom";
-import {URL} from "@/constant"
+import {URL} from "@/Constant"
 import {Navbar} from "flowbite-react/lib/esm/components/Navbar";
 export const Header = () => {
     return (
