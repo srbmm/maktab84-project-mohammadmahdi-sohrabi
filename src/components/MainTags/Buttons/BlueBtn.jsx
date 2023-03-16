@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 
-export const BlueBtn = ({children, className = "", onClick, to=""}) => {
+export const BlueBtn = ({children, className = "", onClick, to="", type}) => {
     className = `border border-my-blue p-2 bg-my-blue hover:bg-white transition ${className}`
     if (to) {
         return (
@@ -10,7 +10,7 @@ export const BlueBtn = ({children, className = "", onClick, to=""}) => {
         );
     } else {
         return (
-            <button className={className} onClick={onClick}>
+            <button className={className} type={type} onClick={onClick}>
                 {children}
             </button>
         );

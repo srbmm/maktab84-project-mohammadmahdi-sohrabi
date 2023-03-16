@@ -1,6 +1,7 @@
 import Modal from 'react-modal';
-import {useContext} from "react";
-
+import { useForm } from "react-hook-form";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const customStyles = {
     content: {
         top: '50%',
@@ -12,15 +13,45 @@ const customStyles = {
     },
 };
 
-// Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 Modal.setAppElement('#root');
 
-export function ModalForm({formValues, afterOpenModal, closeModal, modalIsOpen, isEdit, editClick = () => {}, addClick = () => {},onChange}) {
+export function ModalForm({closeModal, modalIsOpen, isEdit, editClick, addClick}) {
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const submitForm = data => {
+        if (isEdit?.name === undefined) addClick(data)
+        else editClick(data)
+    }
+    if (Object.keys(errors).length !== 0){
+        toast.error('لطفا اطلاعات را با دقت وارد نمایید.', {
+            position: "bottom-center",
+            autoClose: 4000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    }
+
     return (
         <div>
+            <ToastContainer
+                position="bottom-center"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                limit={1}
+                closeOnClick
+                rtl
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
             <Modal
                 isOpen={modalIsOpen}
-                onAfterOpen={afterOpenModal}
+                onAfterOpen={() => {}}
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="modal"
@@ -28,39 +59,33 @@ export function ModalForm({formValues, afterOpenModal, closeModal, modalIsOpen, 
                 <button onClick={closeModal}
                         className="bg-gray-300 rounded-full h-7 w-7 flex items-center justify-center">X
                 </button>
-                <form className="w-96 mt-5 flex flex-col gap-2">
+                <form className="w-96 mt-5 flex flex-col gap-2" onSubmit={handleSubmit(submitForm)} >
                     <div className="flex flex-col gap-1">
                         <label>نام:</label>
-                        <input className="border-b border-gray-500" onChange={onChange} id="name"
-                               value={formValues?.name}/>
+                        <input className="border-b border-gray-500" {...register("name", {required: true})} />
                     </div>
                     <div className="flex flex-col gap-1">
                         <label>دسته بندی:</label>
-                        <input className="border-b border-gray-500" onChange={onChange} id="category"
-                               value={formValues?.category}/>
+                        <input className="border-b border-gray-500" {...register("category", {required: true})} />
                     </div>
                     <div className="flex flex-col gap-1">
                         <label>قیمت:</label>
-                        <input className="border-b border-gray-500" onChange={onChange} id="price"
-                               value={formValues?.price}/>
+                        <input className="border-b border-gray-500" {...register("price", {required: true})} />
                     </div>
                     <div className="flex flex-col gap-1">
                         <label>تخفیف به درصد:</label>
-                        <input className="border-b border-gray-500" onChange={onChange} id="discount"
-                               value={formValues?.discount}/>
+                        <input className="border-b border-gray-500" type="number" {...register("discount", {required: true, min: 0, max: 100})} />
                     </div>
                     <div className="flex flex-col gap-1">
                         <label>تعداد:</label>
-                        <input className="border-b border-gray-500" type="number"
-                               onChange={onChange} id="number" value={formValues?.number}/>
+                        <input className="border-b border-gray-500" type="number" {...register("number", {type: "number", required: true})}/>
                     </div>
                     <div className="flex flex-col gap-1">
-                        <label>عکس:</label>
-                        <input className="border-b border-gray-500" type="file"
-                               onChange={onChange} id="img"/>
+                        <label>عکس محصول:</label>
+                        <input className="border-b border-gray-500" type="file" {...register("image", {required: true})}/>
                     </div>
-                    {isEdit?.name === undefined ? <button className="bg-red-400 p-2 w-full" onClick={addClick}>اضافه کردن</button> :
-                        <button className="bg-red-400 p-2 w-full" onClick={editClick}>ویرایش کردن</button>}
+                    {isEdit?.name === undefined ? <input className="bg-red-400 p-2 w-full hover:cursor-pointer" type="submit" value="اضافه کردن" /> :
+                        <input className="bg-red-400 p-2 w-full hover:cursor-pointer" type="submit" value="ویرایش کردن" />}
                 </form>
             </Modal>
         </div>

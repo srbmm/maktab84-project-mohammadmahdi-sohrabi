@@ -1,4 +1,6 @@
 import React from 'react'
+import { store } from './store'
+import { Provider } from 'react-redux'
 import ReactDOM from 'react-dom/client'
 import {
     Admin,
@@ -12,6 +14,7 @@ import {
     Product,
     Products
 } from "@/components";
+import {CookiesProvider} from 'react-cookie';
 import './index.css';
 import "./assets/fonts/IranYekan/IranYekan.eot"
 import "./assets/fonts/IranYekan/IranYekan.ttf"
@@ -26,52 +29,52 @@ import {URL} from "@/Constant"
 const router = createBrowserRouter([
     {
         path: URL.home.url,
-        element: <MainPage />,
+        element: <MainPage/>,
     },
     {
         path: "auth",
-        element: <Auth />,
+        element: <Auth/>,
     },
     {
         path: URL.card.url,
-        element: <Card />,
+        element: <Card/>,
     },
     {
         path: URL.fakePayment.url,
-        element: <FakePayment />,
+        element: <FakePayment/>,
     },
 
     {
         path: URL.paymentStatus.url,
-        element: <PaymentStatus />,
+        element: <PaymentStatus/>,
     },
     {
         path: URL.products.url,
-        element: <Navigate to={`${URL.products.url}/all/page/1`} />
+        element: <Navigate to={`${URL.products.url}/all/page/1`}/>
     },
     {
         path: URL.admin.url,
-        element: <Admin />,
+        element: <Admin/>,
     },
     {
         path: URL.adminProducts.url,
-        element: <AdminProducts />,
+        element: <AdminProducts/>,
     },
     {
         path: URL.adminHistory.url,
-        element: <AdminHistory />,
+        element: <AdminHistory/>,
     },
     {
         path: URL.product.url,
-        element: <Product />
+        element: <Product/>
     },
     {
         path: URL.productsCategory.url,
-        element: <NavigateToCategoryPage />
+        element: <NavigateToCategoryPage/>
     },
     {
         path: URL.productsPage.url,
-        element: <Products />
+        element: <Products/>
     },
     {
         path: "*",
@@ -79,7 +82,11 @@ const router = createBrowserRouter([
     }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <RouterProvider router={router}  />
-  </React.StrictMode>,
+    <React.StrictMode>
+        <CookiesProvider>
+            <Provider store={store}>
+                <RouterProvider router={router}/>
+            </Provider>
+        </CookiesProvider>
+    </React.StrictMode>,
 )
