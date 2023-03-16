@@ -3,13 +3,11 @@ import {useForm} from "react-hook-form";
 import axios from "axios";
 import {ADDRESS} from "@/Constant";
 import {toast, ToastContainer} from "react-toastify";
-import {useNavigate} from "react-router-dom";
 import {useDispatch} from "react-redux";
 import {setTrue} from "@/store/authSlice.jsx";
 
-export const Auth = ({setCookie, login}) => {
+export const Auth = () => {
     const {register, handleSubmit, watch, formState: {errors}} = useForm();
-    const navigate = useNavigate();
     const dispatch = useDispatch()
     return (
         <MainTheme className="flex justify-center items-center">
@@ -31,20 +29,9 @@ export const Auth = ({setCookie, login}) => {
                     username: data.username,
                     password: data.password
                 }).then(response => {
-                    setCookie('auth',response.data)
-                    toast.success('با موفقیت وارد شدید', {
-                        position: "bottom-center",
-                        autoClose: 4000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "colored",
-                    });
+                    localStorage.setItem('auth',JSON.stringify(response.data))
                     dispatch(setTrue())
                 }).catch(err => {
-                    console.log(err)
                     toast.error('نام کاربری یا رمز عبور اشتباه می باشد.', {
                         position: "bottom-center",
                         autoClose: 4000,

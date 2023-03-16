@@ -9,7 +9,7 @@ export const FinishedCardAdminTag = ({products,telephone, userID, post}) => {
         const temp = []
         products.forEach((product) => {
             axios.get(`${PrADDRESS}/${product.id}`).then(response => {
-                temp.push(<BlueBtn className="m-1 rounded" to="#">{response.data.name}</BlueBtn>)
+                temp.push(<BlueBtn className="m-1 rounded" to={`../../products/${response.data.category}/${response.data.id}`}>{response.data.name}</BlueBtn>)
                 setPrNames([...temp])
             })
         })

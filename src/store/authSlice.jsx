@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    value: false,
+    value: true,
 }
 
 export const authSlice = createSlice({
@@ -17,7 +17,6 @@ export const authSlice = createSlice({
     },
 })
 
-// Action creators are generated for each case reducer function
 export const { setTrue, setFalse } = authSlice.actions
 
 export default authSlice.reducer

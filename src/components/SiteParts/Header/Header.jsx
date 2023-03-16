@@ -46,20 +46,23 @@ export const Header = () => {
                     >
                         صفحه اصلی
                     </Navbar.Link>
-                    <Navbar.Link to="/navbars" >
-                        test
+                    <Navbar.Link href={`${URL.products.url}/tshirt/page/1`} >
+                        تی شرت
                     </Navbar.Link>
-                    <Navbar.Link href="/navbars">
-                        test
+                    <Navbar.Link href={`${URL.products.url}/eynak/page/1`}>
+                        عینک
                     </Navbar.Link>
-                    <Navbar.Link href="/navbars">
-                        test
+                    <Navbar.Link href={`${URL.products.url}/saat/page/1`}>
+                        ساعت
                     </Navbar.Link>
-                    <Navbar.Link href="/navbars">
-                        test
+                    <Navbar.Link href={`${URL.products.url}/kafsh/page/1`}>
+                        کفش
                     </Navbar.Link>
-                    <Navbar.Link href="/navbars">
-                        test
+                    <Navbar.Link href={`${URL.products.url}/pirahan/page/1`}>
+                        پیراهن
+                    </Navbar.Link>
+                    <Navbar.Link href={`${URL.products.url}/kif/page/1`}>
+                        کیف
                     </Navbar.Link>
                 </Navbar.Collapse>
             </Navbar>
