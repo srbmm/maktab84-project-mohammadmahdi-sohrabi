@@ -32,17 +32,21 @@ export const cardSlice = createSlice({
         telephoneNumberChange: (state, action) => {
             state.telephoneNumber = action.payload
         },
-        payCards: (state) => state.paid = true,
+        payCard: (state) => {
+            state.paid = true
+        },
         reset: (state) => {
             state.products = []
-            state.paid = false
             state.postalNumber = ""
             state.telephoneNumber = ""
             localStorage.setItem('card', JSON.stringify([]))
+        },
+        resetPay: (state) => {
+            state.paid = false
         }
     },
 })
 
-export const {addItem, removeItem, reset, telephoneNumberChange, postalNumberChange, payCards} = cardSlice.actions
+export const {addItem, removeItem, reset, telephoneNumberChange, postalNumberChange, payCard,resetPay} = cardSlice.actions
 
 export default cardSlice.reducer

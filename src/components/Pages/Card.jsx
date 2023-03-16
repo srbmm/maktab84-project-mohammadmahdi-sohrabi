@@ -6,10 +6,11 @@ import {useSelector, useDispatch} from "react-redux";
 import {removeItem, telephoneNumberChange, postalNumberChange} from "@/store/cardSlice.jsx"
 import {Table} from "flowbite-react";
 import {useForm} from "react-hook-form";
+import {useNavigate} from "react-router-dom";
 
 export const Card = () => {
+    const navigate = useNavigate()
     const cards = useSelector(state => state.card.products)
-    const test = useSelector(state => state.card)
     const [products, setProducts] = useState([]);
     const {register, handleSubmit, watch, formState: {errors}} = useForm();
     const dispatch = useDispatch()
@@ -27,13 +28,13 @@ export const Card = () => {
                             to={`/../products/${response.data.category}`}>{response.data.persianCategory}</TPLink>
                     </Table.Cell>
                     <Table.Cell>
-                        {response.data.price} تومان
+                        {response.data.price * ((100-response.data.discount)/100)} تومان
                     </Table.Cell>
                     <Table.Cell>
                         {product.number}
                     </Table.Cell>
                     <Table.Cell>
-                        {product.number * response.data.price} تومان
+                        {product.number * response.data.price * ((100-response.data.discount)/100)} تومان
                     </Table.Cell>
                     <Table.Cell>
                         <RedBtn className="rounded text-slate-700" onClick={() => {
@@ -81,6 +82,7 @@ export const Card = () => {
                     <form className="flex flex-col items-center gap-1 md:w-80" onSubmit={handleSubmit(data => {
                             dispatch(telephoneNumberChange(data.telephoneNumber))
                             dispatch(postalNumberChange(data.postalNumber))
+                            navigate("/../fake-payment")
                         })
                     }>
                         <input placeholder="کد پستی" className="border-b border-gray-500 p-2 md:w-72" {...register("postalNumber", {pattern: {

@@ -8,8 +8,7 @@ export const AdminHistory = () => {
     const navigate = useNavigate()
     if (!isLogin) navigate("/admin")
     const [data, add, edit, remove] = useData(CardADDRESS);
-    const cards = data.map(card => <FinishedCardAdminTag userID={card.userID} telephone={card.telephoneNumber}
-                                                         products={card.products} post={card.postalNumber}/>)
+    const cards = data.map(card => <FinishedCardAdminTag  key={card.id} card={card}/>)
     return (
         <MainTheme>
             <HeaderAdmin/>
