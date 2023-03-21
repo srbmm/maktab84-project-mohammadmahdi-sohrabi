@@ -24,7 +24,7 @@ export const BreadCrumbs = () => {
                     else res = URL[Object.keys(URL).find(url => URL[url].url === "/" + item)]?.persian
                     if (res) {
                         return (
-                            <li className="flex items-center gap-2">
+                            <li className="flex items-center gap-2" key={currentAddress}>
                                 {index !== 0 ? "/" : ""}
                                 <Link to={currentAddress}>{res}</Link>
                             </li>

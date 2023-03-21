@@ -10,7 +10,6 @@ export function useLogin(){
     const dispatch = useDispatch()
     useEffect(() => {
         const cookie = JSON.parse(localStorage.getItem("auth"));
-        console.log(cookie)
         if (cookie) {
             axios.interceptors.request.use(req => {
                 if (req.url === ADDRESS + "/auth/refresh-token") {

@@ -1,6 +1,9 @@
 export const ADDRESS = "http://localhost:3002"
 export const PrADDRESS = ADDRESS + "/products"
 export const CardADDRESS = ADDRESS + "/finishedCards"
+export const refreshTokenADDRESS = ADDRESS + "/auth/refresh-token"
+export const loginADDRESS = ADDRESS + "/auth/login"
+export const uploadADDRESS = ADDRESS + "/upload"
 export const Category = [
     {
         name: "tshirt",

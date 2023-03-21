@@ -1,21 +1,22 @@
-import {Navigate, useParams} from "react-router-dom";
-import {PrADDRESS, ADDRESS} from "@/Constant";
-import {MainTheme, RedBtn} from "@/components"
+import {Navigate, useNavigate, useParams} from "react-router-dom";
+import {ADDRESS} from "@/Constant";
+import {MainTheme, RedBtn, Loading, ErrorBoundary} from "@/components"
 import './Product.css';
 import {useState} from "react";
-import {useData} from "@/hooks";
+import {useLoad} from "@/hooks";
 import {addItem} from "@/store/cardSlice.jsx";
 import {useDispatch} from "react-redux";
+import {getProduct} from "@/api/index.js";
 
 export const Product = () => {
     const dispatch = useDispatch()
     const {id, category} = useParams()
-    const [product, add, edit, remove, isFind] = useData(`${PrADDRESS}/${id}`)
-    if (isFind) {
-        if (product.length === 0 || product?.category === category) {
-            const src = `${ADDRESS}/files/${product.picture}`
-            const [number, setNumber] = useState(1);
-            return (
+    const [product, isLoad] = useLoad(getProduct(id), [])
+    if (isLoad && category !== product?.category) new Error("category error")
+    const src = `${ADDRESS}/${product.picture}`
+    const [number, setNumber] = useState(1);
+    return (
+            <Loading isLoad={isLoad}>
                 <MainTheme>
                     <div className="flex flex-wrap justify-center text-justify">
                         <div className="flex-grow">
@@ -27,7 +28,9 @@ export const Product = () => {
                             <h1 className="font-bold">{product.name}</h1>
                             <p className="leading-7">{product.description}</p>
                             <div className="flex justify-around">
-                                <RedBtn to="#" className="w-48 block text-center self-end" onClick={() => dispatch(addItem({id:product.id, number}))}>افزودن به سبد خرید</RedBtn>
+                                <RedBtn className="w-48 block text-center self-end"
+                                        onClick={() => number <= product.number ? dispatch(addItem({id: product.id, number})) : ""}>افزودن به سبد
+                                    خرید</RedBtn>
                                 <input type="number" max={product.number} min="1" value={number} onChange={e => {
                                     setNumber(+e.currentTarget.value)
                                 }}/>
@@ -35,11 +38,8 @@ export const Product = () => {
                         </div>
                     </div>
                 </MainTheme>
-            )
-        } else {
-            return <Navigate to="/"/>
-        }
-    } else {
-        return <Navigate to="/"/>
-    }
+            </Loading>
+    )
+
+
 }

@@ -22,9 +22,7 @@ export const AdminProducts = () => {
 
     let formData = new FormData();
     const [data, add, edit, remove] = useData(PrADDRESS);
-    const [search, setSearch] = useState("")
-    const filteredData = search ? data.filter(product => product.name.includes(search)) : data
-    const products = filteredData.map(product => <ProductAdminTag name={product.name}
+    const products = data.map(product => <ProductAdminTag name={product.name}
                                                                   category={product.persianCategory}
                                                                   price={product.price} number={product.number}
                                                                   picture={product.picture}
@@ -49,7 +47,6 @@ export const AdminProducts = () => {
                            closeModal()
                        }}
             />
-            <SearchBox value={search} onChange={(e) => setSearch(e.target.value)}/>
             <div className="m-10">
                 {...products}
             </div>

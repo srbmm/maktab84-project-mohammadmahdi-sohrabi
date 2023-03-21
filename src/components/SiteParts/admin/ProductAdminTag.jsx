@@ -2,8 +2,7 @@ import {BlueBtn, RedBtn} from "@/components";
 import {ADDRESS} from "@/Constant";
 
 export const ProductAdminTag = ({name, category, price, number, picture, onClickEdit,onClickRemove}) => {
-
-    picture = `${ADDRESS}/files/${picture}`
+    picture = `${ADDRESS}/${picture}`
     return (
         <div className="w-full flex gap-6 items-center h-48 justify-between">
             <h3>{name}</h3>

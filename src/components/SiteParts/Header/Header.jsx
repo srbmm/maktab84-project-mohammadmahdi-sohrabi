@@ -28,7 +28,7 @@ export const Header = () => {
                             <TPLink to={`${URL.products.url}/kif/page/1`}>کیف</TPLink>
                         </div>
                     </div>
-                    <div className="w-56"><SearchBox/></div>
+                    <div className="w-96"><SearchBox/></div>
                 </div>
             </div>
             <div className="md:hidden"><Navbar

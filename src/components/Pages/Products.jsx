@@ -1,51 +1,28 @@
 import {useNavigate, useParams} from "react-router-dom";
-import {Category, PrADDRESS, URL} from "@/Constant";
-import {MainTheme, ProductGroup} from "@/components";
+import {Category, URL} from "@/Constant";
+import {MainTheme, ProductGroup, Loading} from "@/components";
 import {Label, Pagination, Select} from "flowbite-react";
-import {useEffect, useState} from "react";
-import axios from "axios";
+import {useState} from "react";
+import {getProducts} from "@/api";
+import {useLoad} from "@/hooks/index.js";
 
 export const Products = () => {
     const {page, category} = useParams();
     const navigate = useNavigate();
-    const [priceValue, setPriceValue]= useState("");
-    const [products, setProducts] = useState([]);
-    let isFind = true;
-    useEffect(() => {
-        if(priceValue === "lowToUp"){
-            products.sort((a,b) => a.price - b.price)
-            setProducts([...products])
-        }else if (priceValue === "upToLow"){
-            products.sort((a,b) => b.price - a.price)
-            setProducts([...products])
-        }else {
-            getProduct()
-        }
-    }, [priceValue])
-    function getProduct() {
-
-        if (category === "all") {
-            axios.get(`${PrADDRESS}?_page=${page}&_limit=9`).then(
-                (response) => setProducts(response.data)
-            ).catch(() => isFind = false)
-        } else {
-            axios.get(`${PrADDRESS}?category=${category}&_page=${page}&_limit=9`).then(
-                (response) => setProducts(response.data)
-            ).catch(() => isFind = false)
-        }
-    }
-
-    useEffect(() => {
-        return getProduct()
-    }, [page, category])
+    const [priceValue, setPriceValue] = useState({item: "", reverse: false});
+    const [products, isLoad] = useLoad(getProducts({
+        page: page,
+        category: category,
+        sort: priceValue
+    }), [page, category, priceValue])
     const options = Category.map((cat) => {
         if (cat.name === category) return <option value={cat.name} selected>{cat.persian}</option>
         else return <option value={cat.name}>{cat.persian}</option>
     })
     if (category === "all") options.unshift(<option value="all" selected>همه</option>)
     else options.unshift(<option value="all">همه</option>)
-    if (isFind) {
-        return (
+    return (
+        <Loading isLoad={isLoad}>
             <MainTheme>
                 <div className="flex gap-4">
                     <div id="select" className="w-full">
@@ -80,7 +57,9 @@ export const Products = () => {
                             required={true}
                             defaultValue={priceValue}
                             onChange={(e) => {
-                                setPriceValue(e.target.value)
+                                if (e.target.value === 'lowToUp') setPriceValue({item: "price", reverse: true})
+                                else if (e.target.value === 'upToLow') setPriceValue({item: "price", reverse: false})
+                                else setPriceValue({item: "", reverse: false})
                             }
                             }
 
@@ -106,8 +85,6 @@ export const Products = () => {
                     />
                 </div>
             </MainTheme>
-        )
-    } else {
-        return <Navigate to="/"/>
-    }
+        </Loading>
+    )
 }
