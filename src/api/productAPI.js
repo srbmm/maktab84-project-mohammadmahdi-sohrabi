@@ -1,10 +1,7 @@
 import axios from "@/api/customeAPI";
-import {PrADDRESS} from "@/Constant";
+import {PrADDRESS,LimitInPage} from "@/Constant";
 
-export const getProducts =  ({category, page, sort : {
-    item = "",
-    reverse = false
-}, search}) => {
+export const getProducts =  ({category, page, sort , search}) => {
     let temp = "?"
     if (category && category !== "all"){
         temp += `category=${category}`
@@ -13,13 +10,15 @@ export const getProducts =  ({category, page, sort : {
         temp += `&${search.key}_like=${search.value}`
     }
     if(page){
-        temp += `&_page=${page}&_limit=9`
+        temp += `&_page=${page}&_limit=${LimitInPage}`
     }
-    if(item){
-        temp += `&_sort=${item}`
-    }
-    if(reverse){
-        temp += `&_order=desc`
+    if (sort){
+        if(sort.item){
+            temp += `&_sort=${sort.item}`
+        }
+        if(sort.reverse){
+            temp += `&_order=desc`
+        }
     }
     return axios.get(`${PrADDRESS}${temp}`)
 }

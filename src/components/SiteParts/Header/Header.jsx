@@ -1,11 +1,13 @@
-import {Basket, TPLink, Profile} from "@/components/index.js";
+import {Basket, TPLink, Profile, SearchBox} from "@/components/index.js";
 import logo from "@/assets/picture/logo.svg"
-import {SearchBox} from "@/components/MainTags/SearchBox/index.js";
 import "./Header.css"
-import {Link} from "react-router-dom";
+import {Link, useHref} from "react-router-dom";
 import {URL} from "@/Constant"
 import {Navbar} from "flowbite-react/lib/esm/components/Navbar";
 export const Header = () => {
+    const hoverLinkClass = "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
+    const normalLinkClass = "block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+    const address = useHref()
     return (
         <>
             <div className="w-full dir-rtl hidden md:block">
@@ -35,38 +37,42 @@ export const Header = () => {
                 fluid={true}
                 rounded={true}
             >
-                <Navbar.Brand>
-                    <Link to="\" className="bg-gray-400 hover:bg-gray-300 rounded p-2"><img src={logo}/></Link>
-                </Navbar.Brand>
+                <Link to="/" className="bg-gray-400 p-2 rounded"><img src={logo}/></Link>
                 <Navbar.Toggle/>
                 <Navbar.Collapse>
-                    <Navbar.Link
-                        href="/"
-                        active={true}
-                    >
-                        صفحه اصلی
-                    </Navbar.Link>
-                    <Navbar.Link href={`${URL.products.url}/tshirt/page/1`} >
-                        تی شرت
-                    </Navbar.Link>
-                    <Navbar.Link href={`${URL.products.url}/eynak/page/1`}>
-                        عینک
-                    </Navbar.Link>
-                    <Navbar.Link href={`${URL.products.url}/saat/page/1`}>
-                        ساعت
-                    </Navbar.Link>
-                    <Navbar.Link href={`${URL.products.url}/kafsh/page/1`}>
-                        کفش
-                    </Navbar.Link>
-                    <Navbar.Link href={`${URL.products.url}/pirahan/page/1`}>
-                        پیراهن
-                    </Navbar.Link>
-                    <Navbar.Link href={`${URL.products.url}/kif/page/1`}>
-                        کیف
-                    </Navbar.Link>
+                    <SearchBox />
+                    <li>
+                        <Link to={`${URL.products.url}`}
+                           className={address === `${URL.products.url}`?hoverLinkClass:normalLinkClass}>همه محصولات</Link>
+                    </li>
+                    <li>
+                        <Link to={`${URL.products.url}/tshirt/page/1`}
+                              className={address === `${URL.products.url}/tshirt/page/1`?hoverLinkClass:normalLinkClass}>تی شرت</Link>
+                    </li>
+                    <li>
+                        <Link to={`${URL.products.url}/eynak/page/1`}
+                              className={address === `${URL.products.url}/eynak/page/1`?hoverLinkClass:normalLinkClass}>عینک</Link>
+                    </li>
+                    <li>
+                        <Link to={`${URL.products.url}/saat/page/1`}
+                              className={address === `${URL.products.url}/saat/page/1`?hoverLinkClass:normalLinkClass}>ساعت</Link>
+                    </li>
+                    <li>
+                        <Link to={`${URL.products.url}/kafsh/page/1`}
+                              className={address === `${URL.products.url}/kafsh/page/1`?hoverLinkClass:normalLinkClass}>کفش</Link>
+                    </li>
+                    <li>
+                        <Link to={`${URL.products.url}/pirahan/page/1`}
+                              className={address === `${URL.products.url}/pirahan/page/1`?hoverLinkClass:normalLinkClass}>پیراهن</Link>
+                    </li>
+                    <li>
+                        <Link to={`${URL.products.url}/kif/page/1`}
+                              className={address === `${URL.products.url}/kif/page/1`?hoverLinkClass:normalLinkClass}>کیف</Link>
+                    </li>
                 </Navbar.Collapse>
             </Navbar>
             </div>
+
         </>
     )
 }

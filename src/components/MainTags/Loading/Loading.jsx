@@ -1,9 +1,9 @@
 import './Loading.css'
 import {ErrorBoundary} from "@/components";
 
-export const Loading = ({children, isLoad}) => {
+export const Loading = ({children, isLoad, isError=false}) => {
         if (isLoad){
-            return <ErrorBoundary>{children}</ErrorBoundary>
+            return <ErrorBoundary isError={isError}>{children}</ErrorBoundary>
         }
         return (
             <div className="h-screen w-screen bg-white flex items-center justify-center">

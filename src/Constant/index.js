@@ -4,6 +4,7 @@ export const CardADDRESS = ADDRESS + "/finishedCards"
 export const refreshTokenADDRESS = ADDRESS + "/auth/refresh-token"
 export const loginADDRESS = ADDRESS + "/auth/login"
 export const uploadADDRESS = ADDRESS + "/upload"
+export const LimitInPage = 9
 export const Category = [
     {
         name: "tshirt",

@@ -13,6 +13,7 @@ export const BreadCrumbs = () => {
             axios.get(PrADDRESS + "/" + id).then((response) => setPersianPrName(response.data.name))
         }, [])
     }
+    try {
     return (
         <nav className="flex" aria-label="Breadcrumb">
             <ol className="flex items-center bg-gray-200 text-slate-600 gap-2 w-full p-2">
@@ -24,10 +25,14 @@ export const BreadCrumbs = () => {
                     else res = URL[Object.keys(URL).find(url => URL[url].url === "/" + item)]?.persian
                     if (res) {
                         return (
+                            (index !== addresses.length - 1 ) ?
                             <li className="flex items-center gap-2" key={currentAddress}>
                                 {index !== 0 ? "/" : ""}
                                 <Link to={currentAddress}>{res}</Link>
-                            </li>
+                            </li>:<li className="flex items-center gap-2" key={currentAddress}>
+                                    {index !== 0 ? "/" : ""}
+                                    <Link to="#">{res}</Link>
+                                </li>
                         )
                     } else {
                         return ""
@@ -36,5 +41,7 @@ export const BreadCrumbs = () => {
             </ol>
         </nav>
 
-    )
+    )}catch (error) {
+        return ""
+    }
 }

@@ -22,8 +22,8 @@ export const Products = () => {
     if (category === "all") options.unshift(<option value="all" selected>همه</option>)
     else options.unshift(<option value="all">همه</option>)
     return (
-        <Loading isLoad={isLoad}>
-            <MainTheme>
+        <MainTheme>
+            <Loading isLoad={isLoad}>
                 <div className="flex gap-4">
                     <div id="select" className="w-full">
                         <div className="mb-2 block">
@@ -57,8 +57,8 @@ export const Products = () => {
                             required={true}
                             defaultValue={priceValue}
                             onChange={(e) => {
-                                if (e.target.value === 'lowToUp') setPriceValue({item: "price", reverse: true})
-                                else if (e.target.value === 'upToLow') setPriceValue({item: "price", reverse: false})
+                                if (e.target.value === 'lowToUp') setPriceValue({item: "price", reverse: false})
+                                else if (e.target.value === 'upToLow') setPriceValue({item: "price", reverse: true})
                                 else setPriceValue({item: "", reverse: false})
                             }
                             }
@@ -84,7 +84,7 @@ export const Products = () => {
                         nextLabel="بعد"
                     />
                 </div>
-            </MainTheme>
-        </Loading>
+            </Loading>
+        </MainTheme>
     )
 }

@@ -1,5 +1,4 @@
 import {Component} from 'react';
-import {MainTheme} from "@/components";
 
 class ErrorBoundary extends Component {
     constructor(props) {
@@ -15,8 +14,8 @@ class ErrorBoundary extends Component {
     }
 
     render() {
-        if (this.state.hasError) {
-            return <MainTheme err={true}><h3 className="bg-red-100 text-red-600 rounded p-2">مشکلی پیش آمده است</h3></MainTheme>
+        if (this.state.hasError || this.props.isError) {
+            return <h3 className="bg-red-100 text-red-600 rounded p-2">مشکلی پیش آمده است</h3>
         }
         return this.props.children
     }
