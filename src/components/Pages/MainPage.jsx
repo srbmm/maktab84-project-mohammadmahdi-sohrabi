@@ -1,85 +1,65 @@
-import {Footer, Header, OutOfFrame, Slider, MainPageTab} from "@/components";
+import {Footer, Header, OutOfFrame, Slider, MainPageTab, ErrorBoundary} from "@/components";
 import img1 from "@/assets/picture/slides/img_1.png"
 import img2 from "@/assets/picture/slides/img_2.png"
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
+import {useState,useEffect} from "react";
 import kifLink from "@/assets/picture/directLinkImg/kif.jpg"
 import eynakLink from "@/assets/picture/directLinkImg/eynak.png"
-const products = [
-    {
-        "id": 1,
-        "name": "تی شرت دخترانه صورتی",
-        "category": "tshirt",
-        "persianCategory": "تی شرت",
-        "price": 2000,
-        "discount": 20,
-        "number": 10,
-        "description": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.",
-        "picture": "files/img_14.png"
-    },
-    {
-        "id": 2,
-        "name": "عینک آفتاب گردان مدل ۱",
-        "category": "eynak",
-        "persianCategory": " عینک",
-        "price": 5000,
-        "discount": 0,
-        "number": 14,
-        "description": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.",
-        "picture": "files/img.png"
-    },
-    {
-        "id": 3,
-        "name": "ساعت مچی مدل ۱",
-        "category": "saat",
-        "persianCategory": "ساعت",
-        "price": 4000,
-        "discount": 13,
-        "number": 18,
-        "description": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.",
-        "picture": "files/img_1.png"
-    },
-    {
-        "id": 4,
-        "name": "ساعت مچی مدل ۲",
-        "category": "saat",
-        "persianCategory": "ساعت",
-        "price": 9000,
-        "discount": 14,
-        "number": 21,
-        "description": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.",
-        "picture": "files/img_2.png"
-    },
-    {
-        "id": 5,
-        "name": "ساعت مچی مدل ۳",
-        "category": "saat",
-        "persianCategory": "ساعت",
-        "price": 7000,
-        "discount": 22,
-        "number": 22,
-        "description": "لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.",
-        "picture": "files/img_3.png"
-    },
-]
+import {getProduct} from "@/api";
+
+const prGroupId1 = ['1', '2', '3', '4']
+const prGroupId2 = ['5', '6', '7', '8']
 const SlidesData = [
-    {img: img1, link: "auth"},
-    {img: img2, link: "auth"}
+    {img: img1},
+    {img: img2}
 ]
 
 export const MainPage = () => {
+    const [prGroup1, setPrGroup1] = useState([]);
+    const [prGroup2, setPrGroup2] = useState([]);
+    let isSend = false
+    useEffect(() => {
+        prGroupId1.forEach(item => {
+            if(!isSend)  getProduct(item).then(response => {
+                prGroup1.push(response.data)
+                setPrGroup1([...prGroup1])
+            })
+        })
+
+        setPrGroup2([])
+        prGroupId2.forEach(item => {
+            if(!isSend) getProduct(item).then(response => {
+                prGroup2.push(response.data)
+                setPrGroup2([...prGroup2])
+            })
+        })
+        isSend = true
+
+    }, []);
+
+    useEffect(() => {
+    }, []);
+    useEffect(() => {
+        console.log(prGroup1)
+    }, [prGroup1]);
+
     return (
         <>
             <Slider data={SlidesData}>
                 <Header/>
             </Slider>
             <div className="mt-10 mb-20">
-                <OutOfFrame products={products} to="#" text="استایل هفته"/>
-                <MainPageTab />
+                <ErrorBoundary>
+                    <OutOfFrame products={prGroup1} to="#" text="استایل هفته"/>
+                </ErrorBoundary>
+                <MainPageTab/>
                 <div className="flex flex-wrap md:flex-nowrap gap-6 pr-20 pl-20 mt-10 mb-10">
                     <Link to="#"><img src={kifLink}/></Link>
                     <Link to="#"><img src={eynakLink}/></Link>
                 </div>
-                <OutOfFrame products={products} to="#" text="پر بازدید ترین اخیر"/>
+                <ErrorBoundary>
+                    <OutOfFrame products={prGroup2} to="#" text="پر بازدید ترین اخیر"/>
+                </ErrorBoundary>
             </div>
             <Footer/>
         </>
