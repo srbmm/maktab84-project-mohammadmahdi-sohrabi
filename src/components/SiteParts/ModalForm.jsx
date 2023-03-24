@@ -1,7 +1,8 @@
 import Modal from 'react-modal';
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import {Category} from "@/Constant/index.js";
 const customStyles = {
     content: {
         top: '50%',
@@ -16,39 +17,18 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export function ModalForm({closeModal, modalIsOpen, isEdit, editClick, addClick}) {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, handleSubmit, watch, formState: { errors } } = useForm({values : {...isEdit,picture: undefined}});
     const submitForm = data => {
         if (isEdit?.name === undefined) addClick(data)
         else editClick(data)
     }
     if (Object.keys(errors).length !== 0){
-        toast.error('لطفا اطلاعات را با دقت وارد نمایید.', {
-            position: "bottom-center",
-            autoClose: 4000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "colored",
-        });
+        console.log(errors)
+        toast.error('لطفا اطلاعات را با دقت وارد نمایید.');
     }
 
     return (
         <div>
-            <ToastContainer
-                position="bottom-center"
-                autoClose={4000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                limit={1}
-                closeOnClick
-                rtl
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-            />
             <Modal
                 isOpen={modalIsOpen}
                 onAfterOpen={() => {}}
@@ -66,7 +46,9 @@ export function ModalForm({closeModal, modalIsOpen, isEdit, editClick, addClick}
                     </div>
                     <div className="flex flex-col gap-1">
                         <label>دسته بندی:</label>
-                        <input className="border-b border-gray-500" {...register("category", {required: true})} />
+                        <select className="border-b border-gray-500" {...register("category", {required: true})} >
+                            {Category.map(item => <option key={item.name} value={item.name}>{item.persian}</option>)}
+                        </select>
                     </div>
                     <div className="flex flex-col gap-1">
                         <label>قیمت:</label>
@@ -82,7 +64,11 @@ export function ModalForm({closeModal, modalIsOpen, isEdit, editClick, addClick}
                     </div>
                     <div className="flex flex-col gap-1">
                         <label>عکس محصول:</label>
-                        <input className="border-b border-gray-500" type="file" {...register("image", {required: true})}/>
+                        <input className="border-b border-gray-500" type="file" {...register("picture")}/>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                        <label>توضیحات محصول:</label>
+                        <textarea className="border-b border-gray-500" type="file" rows="7" {...register("description", {required: true})}></textarea>
                     </div>
                     {isEdit?.name === undefined ? <input className="bg-red-400 p-2 w-full hover:cursor-pointer" type="submit" value="اضافه کردن" /> :
                         <input className="bg-red-400 p-2 w-full hover:cursor-pointer" type="submit" value="ویرایش کردن" />}

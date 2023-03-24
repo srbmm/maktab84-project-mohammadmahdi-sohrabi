@@ -2,7 +2,7 @@ import {BlueBtn, MainTheme} from "@/components";
 import {useForm} from "react-hook-form";
 import axios from "axios";
 import {ADDRESS} from "@/Constant";
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 import {useDispatch} from "react-redux";
 import {setTrue} from "@/store/authSlice.jsx";
 
@@ -11,19 +11,6 @@ export const Auth = () => {
     const dispatch = useDispatch()
     return (
         <MainTheme className="flex justify-center items-center">
-            <ToastContainer
-                position="bottom-center"
-                autoClose={4000}
-                hideProgressBar={false}
-                newestOnTop={false}
-                limit={0}
-                closeOnClick
-                rtl
-                pauseOnFocusLoss
-                draggable
-                pauseOnHover
-                theme="colored"
-            />
             <form className="flex flex-col gap-6 w-96 p-10 border border-gray-300" onSubmit={handleSubmit(data => {
                 axios.post(ADDRESS + "/auth/login", {
                     username: data.username,
@@ -32,16 +19,7 @@ export const Auth = () => {
                     localStorage.setItem('auth',JSON.stringify(response.data))
                     dispatch(setTrue())
                 }).catch(err => {
-                    toast.error('نام کاربری یا رمز عبور اشتباه می باشد.', {
-                        position: "bottom-center",
-                        autoClose: 4000,
-                        hideProgressBar: false,
-                        closeOnClick: true,
-                        pauseOnHover: true,
-                        draggable: true,
-                        progress: undefined,
-                        theme: "colored",
-                    });
+                    toast.error('نام کاربری یا رمز عبور اشتباه می باشد.');
                 })
             })}>
                 <input className="p-2 border-gray-500 border-b"

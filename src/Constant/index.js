@@ -5,6 +5,7 @@ export const refreshTokenADDRESS = ADDRESS + "/auth/refresh-token"
 export const loginADDRESS = ADDRESS + "/auth/login"
 export const uploadADDRESS = ADDRESS + "/upload"
 export const LimitInPage = 9
+export const NumberOfPages = 2
 export const Category = [
     {
         name: "tshirt",
@@ -63,6 +64,10 @@ export const URL = {
     adminProducts:{
         url: "/admin/products",
         persian: "مدیریت محصولات"
+    },
+    history:{
+      url: "/history",
+      persian: "تاریخچه محصولات"
     },
     adminHistory:{
         url: "/admin/history",

@@ -25,6 +25,7 @@ import {
     RouterProvider, useParams
 } from "react-router-dom";
 import {URL} from "@/Constant"
+import {ToastContainer} from "react-toastify";
 
 const router = createBrowserRouter([
     {
@@ -85,6 +86,19 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <CookiesProvider>
             <Provider store={store}>
+                <ToastContainer
+                    position="bottom-right"
+                    autoClose={4000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    limit={5}
+                    closeOnClick
+                    rtl
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="colored"
+                />
                 <RouterProvider router={router}/>
             </Provider>
         </CookiesProvider>

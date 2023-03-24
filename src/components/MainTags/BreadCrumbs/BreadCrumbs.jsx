@@ -22,7 +22,9 @@ export const BreadCrumbs = () => {
                     let res = ""
                     if(item === category && category && category !== "all") res = Category.find(item => item.name === category).persian
                     else if(id === item && id) res = persianPrName
-                    else res = URL[Object.keys(URL).find(url => URL[url].url === "/" + item)]?.persian
+                    else {
+                        res = URL[Object.keys(URL).find(url => (URL[url].url === "/" + item) && (item != "" || index == 0))]?.persian
+                    }
                     if (res) {
                         return (
                             (index !== addresses.length - 1 ) ?

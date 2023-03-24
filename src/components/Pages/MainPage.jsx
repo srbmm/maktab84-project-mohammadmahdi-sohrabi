@@ -8,7 +8,7 @@ import eynakLink from "@/assets/picture/directLinkImg/eynak.png"
 import {getProduct} from "@/api";
 
 const prGroupId1 = ['1', '2', '3', '4']
-const prGroupId2 = ['5', '6', '7', '8']
+const prGroupId2 = ['5', '6', '7', '8', '9']
 const SlidesData = [
     {img: img1},
     {img: img2}

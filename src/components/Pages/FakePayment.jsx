@@ -5,7 +5,7 @@ import {payCard, reset} from "@/store/cardSlice.jsx";
 import {useNavigate} from "react-router-dom";
 import axios from "axios";
 import {CardADDRESS, PrADDRESS} from "@/Constant/index.js";
-import {toast, ToastContainer} from "react-toastify";
+import {toast} from "react-toastify";
 
 
 export const FakePayment = () => {
@@ -15,7 +15,6 @@ export const FakePayment = () => {
     const {register, handleSubmit, watch, formState: {errors}} = useForm();
     return (
         <div>
-            <ToastContainer />
             <form className="flex flex-col justify-center items-center h-screen gap-2" onSubmit={handleSubmit(data =>{
                 axios.post(CardADDRESS,{...card, id:Math.floor(Math.random()*100000000), mode: 1, paid:undefined}).then(response =>{
                     card.products.forEach(product => {

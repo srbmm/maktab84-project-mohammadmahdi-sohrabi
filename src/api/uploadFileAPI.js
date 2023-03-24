@@ -3,6 +3,6 @@ import {uploadADDRESS} from "@/Constant/index.js";
 
 export const uploadImg = (value) => {
     const formData = new FormData()
-    formData.append("image", value)
-    return axios.post(uploadADDRESS, formData, {headers : { "Content-Type": "multipart/form-data" }})
+    formData.append("image", value[0])
+    return axios.post(uploadADDRESS, formData)
 }
