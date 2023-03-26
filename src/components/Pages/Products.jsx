@@ -1,5 +1,5 @@
 import {useNavigate, useParams} from "react-router-dom";
-import {Category, NumberOfPages, URL} from "@/Constant";
+import {Category, NumberOfPages, URL} from "@/constant";
 import {MainTheme, ProductGroup, Loading} from "@/components";
 import {Label, Pagination, Select} from "flowbite-react";
 import {useState} from "react";
@@ -16,12 +16,8 @@ export const Products = () => {
         category,
         sort: priceValue
     }), [page, category, priceValue])
-    const options = Category.map((cat) => {
-        if (cat.name === category) return <option value={cat.name} selected>{cat.persian}</option>
-        else return <option value={cat.name}>{cat.persian}</option>
-    })
-    if (category === "all") options.unshift(<option value="all" selected>همه</option>)
-    else options.unshift(<option value="all">همه</option>)
+    const categories = Category.map(item => <option value={item.name}>{item.persian}</option>)
+    categories.unshift(<option value="all">همه</option>)
     return (
         <MainTheme>
             <Loading isLoad={isLoad}>
@@ -36,14 +32,14 @@ export const Products = () => {
                         <Select
                             id="category"
                             required={true}
-                            defaultValue={category}
+                            value={category}
                             onChange={(e) => {
                                 navigate(`${URL.products.url}/${e.currentTarget.value}/page/${page}`)
                             }
                             }
 
                         >
-                            {...options}
+                            {...categories}
                         </Select>
                     </div>
                     <div id="select2" className="w-full">

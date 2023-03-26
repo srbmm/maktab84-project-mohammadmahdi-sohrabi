@@ -1,5 +1,5 @@
 import axios from "@/api/customeAPI";
-import {PrADDRESS,LimitInPage} from "@/Constant";
+import {PrADDRESS,LimitInPage} from "@/constant";
 
 export const getProducts =  ({category, page, sort , search}) => {
     let temp = "?"

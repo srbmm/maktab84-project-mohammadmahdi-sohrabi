@@ -1,22 +1,11 @@
-import Modal from 'react-modal';
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {Category} from "@/Constant/index.js";
-const customStyles = {
-    content: {
-        top: '50%',
-        left: '50%',
-        right: 'auto',
-        bottom: 'auto',
-        marginRight: '-50%',
-        transform: 'translate(-50%, -50%)',
-    },
-};
+import {Category} from "@/constant/";
+import {MyModal} from "@/components"
 
-Modal.setAppElement('#root');
 
-export function ModalForm({closeModal, modalIsOpen, isEdit, editClick, addClick}) {
+export function ModalForm({modalState, setModalState, isEdit, editClick, addClick}) {
     const { register, handleSubmit, watch, formState: { errors } } = useForm({values : {...isEdit,picture: undefined}});
     const submitForm = data => {
         if (isEdit?.name === undefined) addClick(data)
@@ -29,16 +18,7 @@ export function ModalForm({closeModal, modalIsOpen, isEdit, editClick, addClick}
 
     return (
         <div>
-            <Modal
-                isOpen={modalIsOpen}
-                onAfterOpen={() => {}}
-                onRequestClose={closeModal}
-                style={customStyles}
-                contentLabel="modal"
-            >
-                <button onClick={closeModal}
-                        className="bg-gray-300 rounded-full h-7 w-7 flex items-center justify-center">X
-                </button>
+            <MyModal modalState={modalState} setModalState={setModalState}>
                 <form className="w-96 mt-5 flex flex-col gap-2" onSubmit={handleSubmit(submitForm)} >
                     <div className="flex flex-col gap-1">
                         <label>نام:</label>
@@ -73,7 +53,7 @@ export function ModalForm({closeModal, modalIsOpen, isEdit, editClick, addClick}
                     {isEdit?.name === undefined ? <input className="bg-red-400 p-2 w-full hover:cursor-pointer" type="submit" value="اضافه کردن" /> :
                         <input className="bg-red-400 p-2 w-full hover:cursor-pointer" type="submit" value="ویرایش کردن" />}
                 </form>
-            </Modal>
+            </MyModal>
         </div>
     );
 }

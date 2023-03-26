@@ -24,7 +24,7 @@ import {
     createBrowserRouter, Navigate,
     RouterProvider, useParams
 } from "react-router-dom";
-import {URL} from "@/Constant"
+import {URL} from "@/constant"
 import {ToastContainer} from "react-toastify";
 
 const router = createBrowserRouter([

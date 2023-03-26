@@ -1,5 +1,5 @@
 import {Navigate, useNavigate, useParams} from "react-router-dom";
-import {ADDRESS} from "@/Constant";
+import {ADDRESS} from "@/constant";
 import {MainTheme, RedBtn, Loading, ErrorBoundary} from "@/components"
 import './Product.css';
 import {useState} from "react";

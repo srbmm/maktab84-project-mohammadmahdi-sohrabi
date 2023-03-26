@@ -2,7 +2,7 @@ import {Basket, TPLink, Profile, SearchBox} from "@/components/index.js";
 import logo from "@/assets/picture/logo.svg"
 import "./Header.css"
 import {Link, useHref} from "react-router-dom";
-import {URL} from "@/Constant"
+import {URL} from "@/constant"
 import {Navbar} from "flowbite-react/lib/esm/components/Navbar";
 export const Header = () => {
     const hoverLinkClass = "block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white"
@@ -38,8 +38,11 @@ export const Header = () => {
                 rounded={true}
             >
                 <Link to="/" className="bg-gray-400 p-2 rounded"><img src={logo}/></Link>
+
                 <Navbar.Toggle/>
                 <Navbar.Collapse>
+                    <div><Basket/></div>
+                    <div><Profile/></div>
                     <SearchBox />
                     <li>
                         <Link to={`${URL.products.url}`}

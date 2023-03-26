@@ -1,6 +1,6 @@
 import {Card} from "flowbite-react";
 import {Link} from "react-router-dom";
-import {URL, ADDRESS} from "@/Constant"
+import {URL, ADDRESS} from "@/constant"
 
 export const ProductCard = ({picture,price,discount,name,category,persianCategory,id}) => {
     let str_price = `${price} تومان`

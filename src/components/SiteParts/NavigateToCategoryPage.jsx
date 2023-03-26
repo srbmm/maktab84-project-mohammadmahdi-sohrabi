@@ -1,5 +1,5 @@
 import {Navigate, useParams} from "react-router-dom";
-import {URL} from "@/Constant/index.js";
+import {URL} from "@/constant/index.js";
 
 export const NavigateToCategoryPage = () => {
     const {category} = useParams()

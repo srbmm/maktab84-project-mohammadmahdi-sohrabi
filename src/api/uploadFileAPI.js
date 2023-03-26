@@ -1,5 +1,5 @@
 import axios from "@/api/customeAPI";
-import {uploadADDRESS} from "@/Constant/index.js";
+import {uploadADDRESS} from "@/constant/index.js";
 
 export const uploadImg = (value) => {
     const formData = new FormData()

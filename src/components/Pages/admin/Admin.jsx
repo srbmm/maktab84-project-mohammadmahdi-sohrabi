@@ -3,7 +3,7 @@ import {useLogin} from "@/hooks";
 
 
 export const Admin = () => {
-    const isLogin = useLogin()
+    const [isLogin] = useLogin()
     console.log(isLogin)
     if (!isLogin) {
         return (

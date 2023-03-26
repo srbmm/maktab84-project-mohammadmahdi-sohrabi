@@ -1,5 +1,5 @@
 import axios from "axios";
-import {refreshTokenADDRESS, uploadADDRESS} from "@/Constant";
+import {refreshTokenADDRESS, uploadADDRESS} from "@/constant";
 
 axios.interceptors.request.use(req => {
     const cookie = JSON.parse(localStorage.getItem("auth"));

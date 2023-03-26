@@ -1,9 +1,14 @@
 import axios from "@/api/customeAPI";
-import {CardADDRESS} from "@/Constant";
+import {CardADDRESS, LimitInPage} from "@/constant";
 
-export const getCards = (mode) => {
-    if(mode === "all") return axios.get(CardADDRESS)
-    else return axios.get(`${CardADDRESS}?mode=${mode}`)
+export const getCards = ({mode, page}) => {
+    let temp = "?"
+    console.log(mode)
+    if(mode !== "all" && mode) temp += `mode=${mode}`
+    if(page) temp += `&_page=${page}&_limit=${LimitInPage}`
+    console.log(CardADDRESS + temp)
+    return axios.get(`${CardADDRESS}${temp}`)
+
 }
 export const getCard = (id) => axios.get(`${CardADDRESS}/${id}`)
 
@@ -11,4 +16,3 @@ export const addCard = (obj) => axios.post(CardADDRESS,{...obj, id: Math.floor(M
 
 export const editCard = (obj) => axios.put(`${CardADDRESS}/${obj.id}`,obj)
 
-export const deleteCard = (id) => axios.delete(`${CardADDRESS}/${id}`)

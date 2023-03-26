@@ -1,4 +1,3 @@
-export * from "./Auth"
 export * from "./admin"
 export * from "./Product"
 export * from "./Card.jsx"

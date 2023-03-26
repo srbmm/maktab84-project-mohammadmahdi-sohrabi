@@ -4,7 +4,7 @@ import {useState} from "react";
 import {getProducts} from "@/api/index.js";
 import {ErrorBoundary} from "@/components";
 import {Link} from "react-router-dom";
-import {URL, ADDRESS} from "@/Constant"
+import {URL, ADDRESS} from "@/constant"
 
 export const SearchBox = ({value}) => {
     const [result, setResult] = useState([]);

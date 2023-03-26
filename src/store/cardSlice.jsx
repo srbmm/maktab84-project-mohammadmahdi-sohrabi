@@ -9,7 +9,10 @@ const initialState = {
     products: cardDataStorage,
     paid: false,
     postalNumber: "",
-    telephoneNumber: ""
+    telephoneNumber: "",
+    date: "",
+    name: "",
+    address: ""
 }
 
 export const cardSlice = createSlice({
@@ -22,6 +25,11 @@ export const cardSlice = createSlice({
             else finded.number += action.payload.number
             localStorage.setItem('card', JSON.stringify(state.products))
         },
+        changeItemNumber: (state, action) => {
+            state.products = state.products.filter(item => item.id !== action.payload.id)
+            state.products.push({id: action.payload.id, number:action.payload.number})
+            localStorage.setItem('card', JSON.stringify(state.products))
+        },
         removeItem: (state, action) => {
             state.products = state.products.filter(item => item.id !== action.payload)
             localStorage.setItem('card', JSON.stringify(state.products))
@@ -31,6 +39,15 @@ export const cardSlice = createSlice({
         },
         telephoneNumberChange: (state, action) => {
             state.telephoneNumber = action.payload
+        },
+        dateChange: (state, action) => {
+            state.date = action.payload
+        },
+        nameChange: (state, action) => {
+            state.name = action.payload
+        },
+        addressChange: (state, action) => {
+            state.address = action.payload
         },
         payCard: (state) => {
             state.paid = true
@@ -47,6 +64,6 @@ export const cardSlice = createSlice({
     },
 })
 
-export const {addItem, removeItem, reset, telephoneNumberChange, postalNumberChange, payCard,resetPay} = cardSlice.actions
+export const {addItem, removeItem, reset, telephoneNumberChange, postalNumberChange, payCard,resetPay, changeItemNumber, dateChange, nameChange, addressChange} = cardSlice.actions
 
 export default cardSlice.reducer

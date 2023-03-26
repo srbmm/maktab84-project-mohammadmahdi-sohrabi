@@ -1,5 +1,5 @@
 import {Link, useParams, useHref} from "react-router-dom";
-import {Category, PrADDRESS, URL} from "@/Constant"
+import {Category, PrADDRESS, URL} from "@/constant"
 import {useEffect, useState} from "react";
 import axios from "axios";
 export const BreadCrumbs = () => {
