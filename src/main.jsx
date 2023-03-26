@@ -1,6 +1,6 @@
 import React from 'react'
-import { store } from './store'
-import { Provider } from 'react-redux'
+import {store} from './store'
+import {Provider} from 'react-redux'
 import ReactDOM from 'react-dom/client'
 import {
     Admin,
@@ -14,7 +14,6 @@ import {
     Product,
     Products
 } from "@/components";
-import {CookiesProvider} from 'react-cookie';
 import './index.css';
 import "./assets/fonts/IranYekan/IranYekan.eot"
 import "./assets/fonts/IranYekan/IranYekan.ttf"
@@ -79,7 +78,7 @@ const router = createBrowserRouter([
     },
     {
         path: URL.notFound.url,
-        element: <NotFound />
+        element: <NotFound/>
     },
     {
         path: "*",
@@ -88,23 +87,21 @@ const router = createBrowserRouter([
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <CookiesProvider>
-            <Provider store={store}>
-                <ToastContainer
-                    position="bottom-right"
-                    autoClose={4000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    limit={5}
-                    closeOnClick
-                    rtl
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="colored"
-                />
-                <RouterProvider router={router}/>
-            </Provider>
-        </CookiesProvider>
+        <Provider store={store}>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={4000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                limit={5}
+                closeOnClick
+                rtl
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="colored"
+            />
+            <RouterProvider router={router}/>
+        </Provider>
     </React.StrictMode>,
 )
