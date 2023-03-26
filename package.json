@@ -1,12 +1,14 @@
 {
   "name": "maktab84-project-mohammadmahdi-sohrabi",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "backend": "node server/server",
+    "backend:dev": "nodemon server/server"
   },
   "dependencies": {
     "@kasraghoreyshi/datepicker": "^0.1.4",
@@ -15,13 +17,12 @@
     "bootstrap-icons": "^1.10.3",
     "flowbite": "^1.6.3",
     "flowbite-react": "^0.3.8",
-    "json-server": "^0.17.2",
-    "jsonwebtoken": "^9.0.0",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^5.2.0",
     "react-cookie": "^4.1.1",
+    "jsonwebtoken": "^9.0.0",
     "react-dom": "^18.2.0",
     "react-headless-tabs": "^6.0.3",
     "react-hook-form": "^7.43.5",

@@ -1,9 +1,8 @@
-import {Navigate, useNavigate, useParams} from "react-router-dom";
-import {ADDRESS} from "@/constant";
-import {MainTheme, RedBtn, Loading, ErrorBoundary} from "@/components"
-import './Product.css';
+import {useParams} from "react-router-dom";
+import {ADDRESS} from "@/constant/index.js";
+import {MainTheme, RedBtn, Loading, ErrorBoundary} from "@/components/index.js"
 import {useState} from "react";
-import {useLoad} from "@/hooks";
+import {useLoad} from "@/hooks/index.js";
 import {addItem} from "@/store/cardSlice.jsx";
 import {useDispatch} from "react-redux";
 import {getProduct} from "@/api/index.js";

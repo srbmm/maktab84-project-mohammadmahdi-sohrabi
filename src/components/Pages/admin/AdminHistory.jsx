@@ -1,7 +1,7 @@
 import {FinishedCardAdminTag, HeaderAdmin, Loading, MainTheme, EditText, BlueBtn} from "@/components";
 import {useLoad, useLogin} from "@/hooks";
 import {useNavigate} from "react-router-dom";
-import {editCard, getCards} from "@/api";
+import {getCards} from "@/api";
 import {Pagination, Table} from "flowbite-react";
 import {NumberOfPages} from "@/constant";
 import {useState} from "react";
@@ -11,7 +11,7 @@ export const AdminHistory = () => {
     const [page, setPage] = useState(1);
     const [mode, setMode] = useState("all")
     if (!isLogin) navigate("/admin")
-    const [data, isLoad, updateData] = useLoad(getCards({page, mode}),[page,mode])
+    const [data, isLoad, updateData] = useLoad(getCards({page, mode, reverse: true}),[page,mode])
     const cards = data.map(card => <FinishedCardAdminTag key={card.id} card={card} updateLogin={updateLogin}/>)
     return (
         <MainTheme>

@@ -88,5 +88,9 @@ export const URL = {
     productsPage:{
         url: "/products/:category/page/:page",
         persian: "محصول"
+    },
+    notFound: {
+        url: "/not-found",
+        persian: "۴۰۴"
     }
 }

@@ -132,7 +132,7 @@ export const AdminProducts = () => {
             </select>
             <Loading isLoad={isLoad}>
                 <div className="m-10">
-                    <Table>
+                    <Table className="text-center">
                         <Table.Head>
                             <Table.HeadCell>
                                 نام محصول

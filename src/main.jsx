@@ -9,7 +9,7 @@ import {
     Auth,
     Card,
     FakePayment,
-    MainPage, NavigateToCategoryPage,
+    MainPage, NavigateToCategoryPage, NotFound,
     PaymentStatus,
     Product,
     Products
@@ -22,7 +22,7 @@ import "./assets/fonts/IranYekan/IranYekan.woff"
 import "./assets/fonts/IranYekan/IranYekan.woff2"
 import {
     createBrowserRouter, Navigate,
-    RouterProvider, useParams
+    RouterProvider
 } from "react-router-dom";
 import {URL} from "@/constant"
 import {ToastContainer} from "react-toastify";
@@ -78,8 +78,12 @@ const router = createBrowserRouter([
         element: <Products/>
     },
     {
+        path: URL.notFound.url,
+        element: <NotFound />
+    },
+    {
         path: "*",
-        element: <Navigate to="/"/>
+        element: <Navigate to={URL.notFound.url}/>
     }
 ])
 ReactDOM.createRoot(document.getElementById('root')).render(
