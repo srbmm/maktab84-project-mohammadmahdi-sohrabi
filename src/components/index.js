@@ -1,3 +1,3 @@
-export * from "./MainTags"
-export * from "./SiteParts"
+export * from "./Bases"
+export * from "./Layouts"
 export * from "./Pages"

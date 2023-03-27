@@ -41,8 +41,12 @@ export const URL = {
         persian: "مدیریت محصولات"
     },
     adminCategory:{
-        url: "/admin/catefory",
+        url: "/admin/category",
         persian: "مدیریت دسته بندی"
+    },
+    category:{
+        url: "/category",
+        persian: "دسته بندی"
     },
     history:{
       url: "/history",

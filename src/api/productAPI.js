@@ -19,6 +19,8 @@ export const getProducts =  ({category, page, sort , search}) => {
         if(sort.reverse){
             temp += `&_order=desc`
         }
+    }else {
+        temp += '&_sort=createdAt&_order=desc'
     }
     return axios.get(`${PrADDRESS}${temp}`)
 }

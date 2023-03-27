@@ -1,6 +1,6 @@
 import {BlueBtn, MainTheme, RedBtn, TPLink} from "@/components";
-import {useEffect, useReducer, useState} from "react";
-import {PrADDRESS, URL} from "@/constant/index.js";
+import {useEffect, useState} from "react";
+import {URL} from "@/constant/index.js";
 import {useSelector, useDispatch} from "react-redux";
 import {
     removeItem,
@@ -16,7 +16,7 @@ import {useNavigate} from "react-router-dom";
 import {DatePicker} from "@kasraghoreyshi/datepicker";
 import "@kasraghoreyshi/calendar/styles.css";
 import {getProduct} from "@/api/index.js";
-
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 export const Card = () => {
     const navigate = useNavigate()
     const [date, setDate] = useState(undefined)
@@ -28,11 +28,11 @@ export const Card = () => {
     const dispatch = useDispatch()
     useEffect(() => {
         const temp = []
-        cards.forEach((product) => {
+        cards.forEach((product, index) => {
             getProduct(product.id).then(response => {
                 number[product.id] = product.number
                 setNumber({...number})
-                temp.push(<Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                temp.push(<Table.Row key={index} className="bg-white dark:border-gray-700 dark:bg-gray-800">
                     <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
                         <TPLink
                             to={`/../products/${response.data.category}/${response.data.id}`}>{response.data.name}</TPLink>
@@ -65,6 +65,7 @@ export const Card = () => {
     if (cards.length !== 0) {
         return (
             <MainTheme className="flex flex-col">
+
                 {!submit ?
                     <>
                         <Table className="text-right">
@@ -113,7 +114,6 @@ export const Card = () => {
                                 setDate("error")
                             }
                             if (date !== 'error' && date) {
-                                console.log("d")
                                 data.date = date.toString()
                                 dispatch(telephoneNumberChange(data.telephoneNumber))
                                 dispatch(dateChange(date.toString()))

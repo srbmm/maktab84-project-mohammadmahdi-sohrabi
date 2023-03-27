@@ -1,5 +1,4 @@
 export * from "./Buttons"
-export * from "./Input"
 export * from "./Links"
 export * from "./SearchBox"
 export * from "./Profile"

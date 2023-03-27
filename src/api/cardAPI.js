@@ -3,11 +3,10 @@ import {CardADDRESS, LimitInPage} from "@/constant";
 
 export const getCards = ({mode, page, reverse}) => {
     let temp = "?"
-    console.log(mode)
     if(mode !== "all" && mode) temp += `mode=${mode}`
-    if(reverse) temp += `&_order=desc`
+    if(reverse) temp += `&_sort=createdAt&_order=desc`
     if(page) temp += `&_page=${page}&_limit=${LimitInPage}`
-    console.log(CardADDRESS + temp)
+    console.log(temp)
     return axios.get(`${CardADDRESS}${temp}`)
 
 }
