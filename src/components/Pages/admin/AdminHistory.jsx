@@ -1,4 +1,4 @@
-import {FinishedCardAdminTag, HeaderAdmin, Loading, MainTheme, EditText, BlueBtn} from "@/components";
+import {FinishedCardAdminTag, HeaderAdmin, Loading, MainTheme} from "@/components";
 import {useLoad, useLogin} from "@/hooks";
 import {useNavigate} from "react-router-dom";
 import {getCards} from "@/api";

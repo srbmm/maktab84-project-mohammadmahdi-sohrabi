@@ -6,9 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview",
-    "backend": "node server/server",
-    "backend:dev": "nodemon server/server"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@kasraghoreyshi/datepicker": "^0.1.4",

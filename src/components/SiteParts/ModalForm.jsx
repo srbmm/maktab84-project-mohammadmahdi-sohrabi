@@ -1,9 +1,9 @@
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {Category} from "@/constant/";
 import {MyModal} from "@/components"
-
+import {useEffect, useState} from "react";
+import {getCategory} from "@/api/index.js";
 
 export function ModalForm({modalState, setModalState, isEdit, editClick, addClick}) {
     const { register, handleSubmit, watch, formState: { errors } } = useForm({values : {...isEdit,picture: undefined}});
@@ -11,6 +11,10 @@ export function ModalForm({modalState, setModalState, isEdit, editClick, addClic
         if (isEdit?.name === undefined) addClick(data)
         else editClick(data)
     }
+    const [Category, setCategory] = useState([]);
+    useEffect(()=> {
+        getCategory({}).then(resoonse => setCategory(resoonse.data))
+    }, [])
     if (Object.keys(errors).length !== 0){
         console.log(errors)
         toast.error('لطفا اطلاعات را با دقت وارد نمایید.');

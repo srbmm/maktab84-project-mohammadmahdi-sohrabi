@@ -2,9 +2,7 @@ import {MainTheme} from "@/components";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect, useState} from "react";
 import {payCard, reset, resetPay} from "@/store/cardSlice.jsx";
-import {addCard} from "@/api/index.js";
-import axios from "axios";
-import {PrADDRESS} from "@/constant/index.js";
+import {addCard, editProduct, getProduct} from "@/api/index.js";
 import {toast} from "react-toastify";
 
 export const PaymentStatus = () => {
@@ -17,7 +15,7 @@ export const PaymentStatus = () => {
         if(paid && !isSendRequest){
             addCard({...card, mode: 1, paid: undefined}).then(response => {
                     card.products.forEach(product => {
-                        axios.get(PrADDRESS + "/" + product.id).then(response => axios.put(PrADDRESS + "/" + product.id, {
+                        getProduct(product.id).then(response => editProduct( {
                             ...response.data,
                             number: (response.data.number - product.number)
                         }))

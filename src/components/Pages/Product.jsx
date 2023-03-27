@@ -1,6 +1,6 @@
 import {useParams} from "react-router-dom";
 import {ADDRESS} from "@/constant/index.js";
-import {MainTheme, RedBtn, Loading, ErrorBoundary} from "@/components/index.js"
+import {MainTheme, RedBtn, Loading} from "@/components/index.js"
 import {useState} from "react";
 import {useLoad} from "@/hooks/index.js";
 import {addItem} from "@/store/cardSlice.jsx";

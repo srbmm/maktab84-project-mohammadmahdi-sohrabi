@@ -1,14 +1,15 @@
 import {useNavigate, useParams} from "react-router-dom";
-import {Category, NumberOfPages, URL} from "@/constant";
+import {NumberOfPages, URL} from "@/constant";
 import {MainTheme, ProductGroup, Loading} from "@/components";
 import {Label, Pagination, Select} from "flowbite-react";
-import {useState} from "react";
-import {getProducts} from "@/api";
+import {useEffect, useState} from "react";
+import {getCategory, getProducts} from "@/api";
 import {useLoad} from "@/hooks";
 
 export const Products = () => {
     const {page, category} = useParams();
     const navigate = useNavigate();
+    const [Category, setCategory] = useState([])
     const [sortSelect, setSortSelect] = useState("")
     const [priceValue, setPriceValue] = useState({item: "", reverse: false});
     const [products, isLoad] = useLoad(getProducts({
@@ -16,6 +17,9 @@ export const Products = () => {
         category,
         sort: priceValue
     }), [page, category, priceValue])
+    useEffect(() => {
+        getCategory({}).then(response => setCategory(response.data))
+    }, [])
     const categories = Category.map(item => <option value={item.name}>{item.persian}</option>)
     categories.unshift(<option value="all">همه</option>)
     return (

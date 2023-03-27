@@ -294,5 +294,37 @@
       "username": "admin",
       "password": "admin"
     }
+  ],
+  "category": [
+    {
+      "name": "tshirt",
+      "persian": "تی شرت"
+    },
+    {
+      "name": "eynak",
+      "persian": "عینک"
+    },
+    {
+      "name": "saat",
+      "persian": "ساعت"
+    },
+    {
+      "name": "kafsh",
+      "persian": "کفش"
+    },
+    {
+      "name": "pirahan",
+      "persian": "پیراهن"
+    },
+    {
+      "name": "kif",
+      "persian": "کیف"
+    },
+    {
+      "name": "test",
+      "persian": "تست",
+      "id": 205155069,
+      "createdAt": 1679955674971
+    }
   ]
 }

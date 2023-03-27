@@ -12,7 +12,8 @@ import {
     MainPage, NavigateToCategoryPage, NotFound,
     PaymentStatus,
     Product,
-    Products
+    Products,
+    AdminCateogory
 } from "@/components";
 import './index.css';
 import "./assets/fonts/IranYekan/IranYekan.eot"
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
     {
         path: URL.adminHistory.url,
         element: <AdminHistory/>,
+    },
+    {
+        path: URL.adminCategory.url,
+        element: <AdminCateogory/>,
     },
     {
         path: URL.product.url,

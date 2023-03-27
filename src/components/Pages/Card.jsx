@@ -1,6 +1,5 @@
 import {BlueBtn, MainTheme, RedBtn, TPLink} from "@/components";
 import {useEffect, useReducer, useState} from "react";
-import axios from "axios";
 import {PrADDRESS, URL} from "@/constant/index.js";
 import {useSelector, useDispatch} from "react-redux";
 import {
@@ -16,6 +15,7 @@ import {useForm} from "react-hook-form";
 import {useNavigate} from "react-router-dom";
 import {DatePicker} from "@kasraghoreyshi/datepicker";
 import "@kasraghoreyshi/calendar/styles.css";
+import {getProduct} from "@/api/index.js";
 
 export const Card = () => {
     const navigate = useNavigate()
@@ -29,7 +29,7 @@ export const Card = () => {
     useEffect(() => {
         const temp = []
         cards.forEach((product) => {
-            axios.get(`${PrADDRESS}/${product.id}`).then(response => {
+            getProduct(product.id).then(response => {
                 number[product.id] = product.number
                 setNumber({...number})
                 temp.push(<Table.Row className="bg-white dark:border-gray-700 dark:bg-gray-800">

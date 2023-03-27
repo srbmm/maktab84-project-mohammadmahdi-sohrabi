@@ -1,9 +1,9 @@
 import {HeaderAdmin, MainTheme, ProductAdminTag, SearchBox, ModalForm, Loading, BlueBtn, RedBtn} from "@/components";
 import {useLoad, useLogin} from "@/hooks";
-import {useState} from "react";
-import {Category, NumberOfPages} from "@/constant";
+import {useState, useEffect} from "react";
+import {NumberOfPages} from "@/constant";
 import {useNavigate} from "react-router-dom";
-import {addProduct, getProducts, uploadImg, editProduct, deleteProduct} from "@/api/index.js";
+import {addProduct, getProducts, uploadImg, editProduct, deleteProduct, getCategory} from "@/api/index.js";
 import {Pagination, Table} from "flowbite-react";
 import {toast} from "react-toastify";
 
@@ -11,11 +11,16 @@ import {toast} from "react-toastify";
 export const AdminProducts = () => {
     const [isLogin, updateLogin] = useLogin()
     const navigate = useNavigate()
+    const [Categories, setCategories] = useState([])
     if (!isLogin) navigate("/admin")
     const [modalIsOpen, setIsOpen] = useState(false);
     const [isEdit, setIsEdit] = useState(0);
     const [page, setPage] = useState(1);
     const [category, setCategory] = useState("all");
+    useEffect(() => {
+        getCategory({}).then(response => setCategories(response.data))
+    }, []);
+
 
     function openModal() {
         setIsOpen(true);
@@ -43,7 +48,7 @@ export const AdminProducts = () => {
                                                                   })
                                                               }
                                                           }/>)
-    const categories = Category.map(item => <option value={item.name} key={item.name}>{item.persian}</option>)
+    const categories = Categories.map(item => <option value={item.name} key={item.name}>{item.persian}</option>)
     categories.unshift(<option value="">همه</option>)
     return (
         <MainTheme>
@@ -61,7 +66,7 @@ export const AdminProducts = () => {
                                        uploadImg(data.picture).then(response => {
                                            if (response.data.filename) {
                                                data.picture = "files/" + response.data.filename
-                                               data.persianCategory = Category.find(item => item.name === data.category)?.persian
+                                               data.persianCategory = Categories.find(item => item.name === data.category)?.persian
                                                try {
                                                    data.price = +data.price
                                                    data.discount = +data.discount
@@ -89,7 +94,7 @@ export const AdminProducts = () => {
                                        uploadImg(data.picture).then(response => {
                                            if (response.data.filename) {
                                                data.picture = "files/" + response.data.filename
-                                               data.persianCategory = Category.find(item => item.name === data.category)?.persian
+                                               data.persianCategory = Categories.find(item => item.name === data.category)?.persian
                                                try {
                                                    data.price = +data.price
                                                    data.discount = +data.discount
@@ -106,7 +111,7 @@ export const AdminProducts = () => {
                                            }
                                        })
                                    } else {
-                                       data.persianCategory = Category.find(item => item.name === data.category)?.persian
+                                       data.persianCategory = Categories.find(item => item.name === data.category)?.persian
                                        try {
                                            data.price = +data.price
                                            data.discount = +data.discount

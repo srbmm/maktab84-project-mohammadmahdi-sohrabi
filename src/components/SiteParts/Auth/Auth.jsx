@@ -1,7 +1,5 @@
 import {BlueBtn, MainTheme} from "@/components/index.js";
 import {useForm} from "react-hook-form";
-import axios from "axios";
-import {ADDRESS} from "@/constant/index.js";
 import {toast} from "react-toastify";
 import {useDispatch} from "react-redux";
 import {setTrue} from "@/store/authSlice.jsx";

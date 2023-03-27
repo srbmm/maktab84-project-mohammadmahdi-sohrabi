@@ -4,7 +4,6 @@ import {useLogin} from "@/hooks";
 
 export const Admin = () => {
     const [isLogin] = useLogin()
-    console.log(isLogin)
     if (!isLogin) {
         return (
             <>
@@ -15,7 +14,6 @@ export const Admin = () => {
         return (
             <MainTheme>
                 <HeaderAdmin/>
-
             </MainTheme>
         )
     }

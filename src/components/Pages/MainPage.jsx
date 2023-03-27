@@ -40,7 +40,6 @@ export const MainPage = () => {
     useEffect(() => {
     }, []);
     useEffect(() => {
-        console.log(prGroup1)
     }, [prGroup1]);
 
     return (
