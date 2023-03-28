@@ -13,6 +13,11 @@ export const Product = () => {
     const [product, isLoad] = useLoad(getProduct(id), [])
     const src = `${ADDRESS}/${product.picture}`
     const [number, setNumber] = useState(1);
+    let str_price = `${(product.price) * number} تومان`
+    let discountedPrice = 0
+    if (product.discount){
+        discountedPrice = `${(product.price*((100-product.discount)/100)) * number} تومان`
+    }
     return (
         <MainTheme>
             <Loading isLoad={isLoad} isError={(isLoad) && category !== product?.category}>
@@ -32,7 +37,7 @@ export const Product = () => {
                                         number
                                     })) : ""}>افزودن به سبد
                                 خرید</RedBtn>
-                            <input type="number" max={product.number} min="1" value={number} onChange={e => {
+                            <span className='line-through text-gray-500 m-1'>{product.discount? str_price:""}</span> <span>{product.discount?discountedPrice:str_price}</span>                            <input type="number" max={product.number} min="1" value={number} onChange={e => {
                                 setNumber(+e.currentTarget.value)
                             }}/>
                         </div>

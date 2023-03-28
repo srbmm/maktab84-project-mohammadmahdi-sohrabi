@@ -16,7 +16,7 @@ import {useNavigate} from "react-router-dom";
 import {DatePicker} from "@kasraghoreyshi/datepicker";
 import "@kasraghoreyshi/calendar/styles.css";
 import {getProduct} from "@/api/index.js";
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+
 export const Card = () => {
     const navigate = useNavigate()
     const [date, setDate] = useState(undefined)
@@ -26,42 +26,52 @@ export const Card = () => {
     const [submit, setSubmit] = useState(false);
     const {register, handleSubmit, watch, formState: {errors}} = useForm();
     const dispatch = useDispatch()
+    const [totalPrice, setTotalPrice] = useState(0)
+    let total = 0
+    let isTotal = false
     useEffect(() => {
-        const temp = []
-        cards.forEach((product, index) => {
-            getProduct(product.id).then(response => {
-                number[product.id] = product.number
-                setNumber({...number})
-                temp.push(<Table.Row key={index} className="bg-white dark:border-gray-700 dark:bg-gray-800">
-                    <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
-                        <TPLink
-                            to={`/../products/${response.data.category}/${response.data.id}`}>{response.data.name}</TPLink>
-                    </Table.Cell>
-                    <Table.Cell>
-                        <TPLink
-                            to={`/../products/${response.data.category}`}>{response.data.persianCategory}</TPLink>
-                    </Table.Cell>
-                    <Table.Cell>
-                        {response.data.price * ((100 - response.data.discount) / 100)} تومان
-                    </Table.Cell>
-                    <Table.Cell>
-                        {product.number}
-                    </Table.Cell>
-                    <Table.Cell>
-                        {product.number * response.data.price * ((100 - response.data.discount) / 100)} تومان
-                    </Table.Cell>
-                    <Table.Cell>
-                        <RedBtn className="rounded text-slate-700" onClick={() => {
-                            dispatch(removeItem(product.id))
-                        }}>
-                            حذف
-                        </RedBtn>
-                    </Table.Cell>
-                </Table.Row>)
-                setProducts([...temp])
+        if (!isTotal) {
+            const temp = []
+            cards.forEach((product, index) => {
+                getProduct(product.id).then(response => {
+                    total += (response.data.price * ((100 - response.data.discount) / 100)) * product.number
+                    number[product.id] = product.number
+                    setNumber({...number})
+                    temp.push(<Table.Row key={index} className="bg-white dark:border-gray-700 dark:bg-gray-800">
+                        <Table.Cell className="whitespace-nowrap font-medium text-gray-900 dark:text-white">
+                            <TPLink
+                                to={`/../products/${response.data.category}/${response.data.id}`}>{response.data.name}</TPLink>
+                        </Table.Cell>
+                        <Table.Cell>
+                            <TPLink
+                                to={`/../products/${response.data.category}`}>{response.data.persianCategory}</TPLink>
+                        </Table.Cell>
+                        <Table.Cell>
+                            {response.data.price * ((100 - response.data.discount) / 100)} تومان
+                        </Table.Cell>
+                        <Table.Cell>
+                            {product.number}
+                        </Table.Cell>
+                        <Table.Cell>
+                            {product.number * response.data.price * ((100 - response.data.discount) / 100)} تومان
+                        </Table.Cell>
+                        <Table.Cell>
+                            <RedBtn className="rounded text-slate-700" onClick={() => {
+                                dispatch(removeItem(product.id))
+                            }}>
+                                حذف
+                            </RedBtn>
+                        </Table.Cell>
+                    </Table.Row>)
+                    if (index === cards.length - 1) {
+                        setTotalPrice(total)
+                    }
+                    setProducts([...temp])
+                })
             })
-        })
-    }, [])
+            isTotal = true
+        }
+    }, [cards])
     if (cards.length !== 0) {
         return (
             <MainTheme className="flex flex-col">
@@ -95,6 +105,7 @@ export const Card = () => {
                                 {...products}
                             </Table.Body>
                         </Table>
+                        <div className="flex justify-between m-2"><p>قیمت کل:</p><p>{totalPrice} تومان</p></div>
                         <RedBtn className="rounded p-2 m-2" onClick={() => setSubmit(true)}>تایید سبد خرید</RedBtn>
                     </> :
                     <div className="flex flex-col items-center justify-center m-4">

@@ -71,7 +71,7 @@ export const FinishedCardAdminTag = ({card, updateLogin}) => {
                 <Table.Cell><BlueBtn className="rounded" onClick={() => {
                     updateLogin().then(isLogin => {
                         if (isLogin) setModal(true)
-                        else navigate(URL.admin)
+                        else navigate(URL.admin.url)
                     })
                 }}>اطلاعات بیشتر</BlueBtn></Table.Cell>
             </Table.Row>

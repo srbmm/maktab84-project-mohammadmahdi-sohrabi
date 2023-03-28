@@ -12,7 +12,7 @@ import {
     PaymentStatus,
     Product,
     Products,
-    AdminCateogory
+    AdminCategory
 } from "@/components";
 import './index.css';
 import "./assets/fonts/IranYekan/IranYekan.eot"
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
     },
     {
         path: URL.adminCategory.url,
-        element: <AdminCateogory/>,
+        element: <AdminCategory/>,
     },
     {
         path: URL.product.url,

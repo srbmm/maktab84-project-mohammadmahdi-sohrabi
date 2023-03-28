@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 
-export const RedBtn = ({children, className = "", onClick, to=""}) => {
-    className = `border border-my-red p-2 bg-my-red hover:bg-white transition ${className}`
+export const RedBtn = ({children, className = "", onClick, to="", disabled}) => {
+    className = `border border-my-red p-2 disabled:bg-red-500 bg-my-red hover:bg-white transition ${className}`
     if (to) {
         return (
             <Link className={className} to={to} onClick={onClick}>
@@ -10,7 +10,7 @@ export const RedBtn = ({children, className = "", onClick, to=""}) => {
         );
     } else {
         return (
-            <button className={className} onClick={onClick}>
+            <button disabled={disabled} className={className} onClick={onClick}>
                 {children}
             </button>
         );

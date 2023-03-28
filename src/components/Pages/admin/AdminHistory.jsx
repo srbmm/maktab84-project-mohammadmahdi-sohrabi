@@ -3,14 +3,14 @@ import {useLoad, useLogin} from "@/hooks";
 import {useNavigate} from "react-router-dom";
 import {getCards} from "@/api";
 import {Pagination, Table} from "flowbite-react";
-import {NumberOfPages} from "@/constant";
+import {NumberOfPages, URL} from "@/constant";
 import {useState} from "react";
 export const AdminHistory = () => {
     const [isLogin, updateLogin] = useLogin()
     const navigate = useNavigate()
     const [page, setPage] = useState(1);
     const [mode, setMode] = useState("all")
-    if (!isLogin) navigate("/admin")
+    if (!isLogin) navigate(URL.admin.url)
     const [data, isLoad, updateData] = useLoad(getCards({page, mode, reverse: true}),[page,mode])
     const cards = data.map(card => <FinishedCardAdminTag key={card.id} card={card} updateLogin={updateLogin}/>)
     return (

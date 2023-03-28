@@ -1,7 +1,7 @@
 import {HeaderAdmin, MainTheme, ProductAdminTag, SearchBox, ModalForm, Loading, BlueBtn, RedBtn} from "@/components";
 import {useLoad, useLogin} from "@/hooks";
 import {useState, useEffect} from "react";
-import {NumberOfPages} from "@/constant";
+import {NumberOfPages, URL} from "@/constant";
 import {useNavigate} from "react-router-dom";
 import {addProduct, getProducts, uploadImg, editProduct, deleteProduct, getCategory} from "@/api/index.js";
 import {Pagination, Table} from "flowbite-react";
@@ -12,7 +12,7 @@ export const AdminProducts = () => {
     const [isLogin, updateLogin] = useLogin()
     const navigate = useNavigate()
     const [Categories, setCategories] = useState([])
-    if (!isLogin) navigate("/admin")
+    if (!isLogin) navigate(URL.admin.url)
     const [modalIsOpen, setIsOpen] = useState(false);
     const [isEdit, setIsEdit] = useState(0);
     const [page, setPage] = useState(1);
@@ -44,6 +44,8 @@ export const AdminProducts = () => {
                                                                   updateLogin().then(isLogin => {
                                                                       if (isLogin) {
                                                                           deleteProduct(product.id).then(() => updateData())
+                                                                      }else {
+                                                                          navigate(URL.admin.url)
                                                                       }
                                                                   })
                                                               }
